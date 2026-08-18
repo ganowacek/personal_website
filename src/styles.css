@@ -276,8 +276,13 @@ input {
 .research-card,
 .certification-panel,
 .contact-panel,
-.publication {
-  background: color-mix(in srgb, var(--surface) 94%, var(--blue));
+.publication,
+.coursework-board,
+.teaching-list article,
+.timeline article {
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(7, 20, 38, 0.055);
 }
 
 .social-row {
@@ -330,14 +335,14 @@ input {
 
 .section-header {
   max-width: 48rem;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.45rem;
 }
 
 .section-header h2,
 .contact-panel h2 {
   margin: 0.25rem 0 0;
   font-family: Fraunces, Georgia, serif;
-  font-size: clamp(2rem, 4.6vw, 4rem);
+  font-size: clamp(1.85rem, 3.2vw, 3.15rem);
   line-height: 1.05;
   letter-spacing: 0;
 }
@@ -378,7 +383,10 @@ input {
 .research-card,
 .certification-panel,
 .contact-panel,
-.publication {
+.publication,
+.teaching-list article,
+.timeline article,
+.coursework-board {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: clamp(1.1rem, 2.3vw, 1.5rem);
@@ -449,7 +457,7 @@ input {
 }
 
 .publication-band {
-  background: color-mix(in srgb, var(--surface-soft) 72%, transparent);
+  background: transparent;
 }
 
 .stack {
@@ -469,9 +477,7 @@ input {
 }
 
 .coursework-section {
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--surface) 64%, transparent), transparent),
-    color-mix(in srgb, var(--surface-soft) 48%, transparent);
+  background: transparent;
 }
 
 .course-list {
@@ -485,11 +491,6 @@ input {
 
 .coursework-board {
   max-width: 70rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: clamp(1rem, 2.2vw, 1.35rem);
-  background: color-mix(in srgb, var(--surface) 91%, var(--blue));
-  box-shadow: 0 14px 42px rgba(7, 20, 38, 0.055);
 }
 
 .course-list li {
@@ -503,7 +504,7 @@ input {
 }
 
 .teaching-section {
-  background: color-mix(in srgb, var(--surface) 58%, transparent);
+  background: transparent;
 }
 
 .teaching-list {
@@ -515,14 +516,10 @@ input {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1rem;
-  border-top: 1px solid var(--line);
-  padding-top: 1rem;
 }
 
 .skills-section {
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--surface-soft) 54%, transparent), transparent 58%),
-    color-mix(in srgb, var(--surface) 42%, transparent);
+  background: transparent;
 }
 
 .skills-tags {
@@ -546,7 +543,7 @@ input {
 }
 
 .fellowship-section {
-  background: color-mix(in srgb, var(--surface-soft) 48%, transparent);
+  background: transparent;
 }
 
 .fellowship-section .stack {
@@ -585,26 +582,16 @@ input {
 
 .timeline {
   display: grid;
-  gap: 0;
+  gap: 0.9rem;
   max-width: 70rem;
-  border-left: 1px solid var(--line);
 }
 
 .timeline article {
   position: relative;
-  padding: 0 0 1.7rem 1.4rem;
 }
 
 .timeline article::before {
-  position: absolute;
-  top: 0.4rem;
-  left: -0.39rem;
-  width: 0.72rem;
-  height: 0.72rem;
-  border-radius: 999px;
-  background: var(--blue);
-  content: "";
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--blue) 18%, transparent);
+  content: none;
 }
 
 .timeline span {
@@ -614,17 +601,7 @@ input {
 }
 
 .contact-panel {
-  background:
-    linear-gradient(135deg, rgba(246, 200, 95, 0.12), transparent 45%),
-    var(--ink);
-  color: var(--bg);
-}
-
-.contact-panel p,
-.contact-panel .eyebrow,
-.contact-panel a,
-.contact-panel span {
-  color: color-mix(in srgb, var(--bg) 82%, transparent);
+  color: var(--ink);
 }
 
 .site-footer {

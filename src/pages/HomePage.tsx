@@ -61,7 +61,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section credential-section" id="education">
-        <SectionHeader eyebrow="Education" title="Education" />
+        <SectionHeader title="Education" />
         <div className="credential-grid">
           <div className="stack">
             {education.map((item) => (
@@ -84,7 +84,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section teaching-section" id="teaching">
-        <SectionHeader eyebrow="Teaching Experience" title="Teaching Experience" />
+        <SectionHeader title="Teaching Experience" />
         <div className="teaching-list">
           {teaching.map((item) => (
             <article key={`${item.institution}-${item.role}`}>
@@ -102,7 +102,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section" id="research">
-        <SectionHeader eyebrow="Research Experience" title="Research Appointments" />
+        <SectionHeader title="Research Appointments" />
         <div className="research-grid">
           {researchEntries.map((entry) => (
             <article className="research-card" key={entry.title}>
@@ -119,7 +119,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section publication-band" id="publications">
-        <SectionHeader eyebrow="Publication" title="Publication" />
+        <SectionHeader title="Publication" />
         <div className="stack">
           {publications.map((publication) => (
             <article className="publication" key={publication.title}>
@@ -139,7 +139,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section coursework-section" id="coursework">
-        <SectionHeader eyebrow="Relevant Coursework" title="Relevant Coursework" />
+        <SectionHeader title="Relevant Coursework" />
         <ul className="course-list coursework-board" aria-label="Coursework">
           {coursework.map((course) => <li key={course}>{course}</li>)}
         </ul>
@@ -148,7 +148,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="section skills-section" id="skills">
         <div className="skills-grid">
           <div>
-            <SectionHeader eyebrow="Technical Skills" title="Technical Skills" />
+            <SectionHeader title="Technical Skills" />
             <div className="tag-row skills-tags">{selectedTools.map((tool) => <span key={tool}>{tool}</span>)}</div>
           </div>
           <div className="certification-panel" id="certifications">
@@ -166,7 +166,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section fellowship-section" id="fellowships">
-        <SectionHeader eyebrow="Fellowships" title="Fellowships" />
+        <SectionHeader title="Fellowships" />
         <div className="stack">
           {fellowships.map((fellowship) => (
             <article className="credential-card" key={fellowship.name}>
@@ -179,7 +179,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section" id="experience">
-        <SectionHeader eyebrow="Professional Experience" title="Professional Experience" />
+        <SectionHeader title="Professional Experience" />
         <div className="timeline">
           {experience.map((item) => (
             <article key={`${item.organization}-${item.title}`}>
