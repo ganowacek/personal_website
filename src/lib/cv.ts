@@ -1,13 +1,5 @@
 import { siteConfig } from "../data/site";
 
-export function openCv() {
-  if (!siteConfig.cvAvailable) {
-    return;
-  }
-
-  window.open(siteConfig.cv, "_blank", "noopener,noreferrer");
-}
-
 export function downloadCv() {
   if (!siteConfig.cvAvailable) {
     return;

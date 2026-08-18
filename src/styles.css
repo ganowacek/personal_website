@@ -552,7 +552,30 @@ input {
 }
 
 .cv-contact {
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: stretch;
+}
+
+.cv-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.cv-header svg {
+  color: var(--deep-blue);
+}
+
+.cv-frame {
+  display: block;
+  width: 100%;
+  min-height: min(78svh, 62rem);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
 }
 
 .contact-panel {
@@ -730,9 +753,14 @@ code {
   }
 
   .hero-actions .button,
+  .cv-header .button,
   .cv-panel .button {
     width: 100%;
     justify-content: center;
+  }
+
+  .cv-header {
+    display: grid;
   }
 
   .hero h1,
