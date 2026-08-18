@@ -64,6 +64,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background:
     linear-gradient(135deg, rgba(246, 200, 95, 0.12), transparent 18rem),
     linear-gradient(180deg, rgba(75, 156, 211, 0.12), transparent 32rem),
@@ -115,11 +116,17 @@ input {
 }
 
 .site-nav nav {
+  min-width: 0;
   display: flex;
   justify-content: center;
   gap: clamp(0.55rem, 1.6vw, 1.25rem);
   color: var(--muted);
   font-size: 0.93rem;
+  scrollbar-width: none;
+}
+
+.site-nav nav::-webkit-scrollbar {
+  display: none;
 }
 
 .site-nav nav a {
@@ -181,6 +188,9 @@ input {
 }
 
 .hero-copy {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   animation: rise-in 700ms ease both;
 }
 
@@ -210,6 +220,10 @@ input {
   max-width: 45rem;
   color: var(--muted);
   font-size: clamp(1.1rem, 2vw, 1.45rem);
+}
+
+.hero-lede {
+  max-width: min(45rem, 100%);
 }
 
 .eyebrow,
@@ -279,6 +293,7 @@ input {
 
 .hero-diagram {
   margin: clamp(2rem, 4vw, 3rem) 0 0;
+  max-width: 100%;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -327,6 +342,8 @@ input {
 }
 
 .manim-panel {
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   padding: 0;
   background: var(--ink);
@@ -692,6 +709,15 @@ input {
   color: var(--deep-blue);
 }
 
+.cv-frame {
+  display: block;
+  width: 100%;
+  min-height: min(78svh, 62rem);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
 .contact-panel {
   background:
     linear-gradient(135deg, rgba(246, 200, 95, 0.12), transparent 45%),
@@ -893,7 +919,19 @@ code {
   .hero h1,
   .page-hero h1,
   .not-found h1 {
-    font-size: clamp(2.7rem, 17vw, 4rem);
+    font-size: clamp(2.5rem, 14vw, 3.4rem);
+  }
+
+  .hero h1 {
+    max-width: calc(100vw - 2rem);
+    overflow-wrap: break-word;
+  }
+
+  .hero-copy,
+  .hero-lede,
+  .hero-diagram,
+  .manim-panel {
+    max-width: calc(100vw - 2rem);
   }
 
   .site-footer {

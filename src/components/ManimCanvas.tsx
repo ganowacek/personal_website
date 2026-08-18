@@ -205,12 +205,56 @@ export function ManimCanvas() {
       context.fillText("X_t", startX, baseY + 16);
     }
 
+    function drawTheoryMotif(time: number) {
+      const compact = width < 520;
+      const centerX = compact ? width * 0.28 : width * 0.25;
+      const centerY = compact ? height * 0.33 : height * 0.32;
+      const radiusX = Math.min(width, height) * (compact ? 0.11 : 0.13);
+      const radiusY = radiusX * 0.62;
+      const phase = time * 0.0012;
+
+      context.save();
+      context.translate(centerX, centerY);
+      context.rotate(-0.25);
+      context.strokeStyle = "rgba(47, 157, 144, 0.82)";
+      context.lineWidth = 2.5;
+      context.beginPath();
+      for (let step = 0; step <= 120; step += 1) {
+        const angle = (step / 120) * Math.PI * 2;
+        const wobble = 1 + 0.12 * Math.sin(3 * angle + phase);
+        const x = Math.cos(angle) * radiusX * wobble;
+        const y = Math.sin(angle) * radiusY * (1 + 0.08 * Math.cos(2 * angle - phase));
+        if (step === 0) context.moveTo(x, y);
+        else context.lineTo(x, y);
+      }
+      context.closePath();
+      context.stroke();
+
+      const movingAngle = phase % (Math.PI * 2);
+      const pointX = Math.cos(movingAngle) * radiusX;
+      const pointY = Math.sin(movingAngle) * radiusY;
+      context.fillStyle = "#f09a8f";
+      context.beginPath();
+      context.arc(pointX, pointY, compact ? 3.5 : 4.5, 0, Math.PI * 2);
+      context.fill();
+
+      context.strokeStyle = "rgba(246, 200, 95, 0.78)";
+      context.lineWidth = 2;
+      context.beginPath();
+      context.moveTo(pointX, pointY);
+      context.lineTo(pointX - Math.sin(movingAngle) * radiusX * 0.42, pointY + Math.cos(movingAngle) * radiusY * 0.42);
+      context.stroke();
+      context.restore();
+    }
+
     function drawLabels(time: number) {
-      context.font = "600 15px Inter, sans-serif";
+      const compact = width < 520;
+      context.font = `600 ${compact ? 12 : 15}px Inter, sans-serif`;
       context.fillStyle = "rgba(247, 245, 239, 0.8)";
-      context.fillText("E[Y | X]", width * 0.09, height * 0.2 + Math.sin(time * 0.002) * 4);
+      context.fillText("f: X -> Y", width * 0.09, height * 0.2 + Math.sin(time * 0.002) * 4);
+      context.fillText(compact ? "θ -> insight" : "θ -> model -> insight", width * 0.5, height * 0.24 + Math.cos(time * 0.0018) * 4, width * 0.44);
       context.fillStyle = "rgba(246, 200, 95, 0.86)";
-      context.fillText("log L(theta)", width * 0.62, height * 0.52);
+      context.fillText("log L(θ)", width * 0.62, height * 0.52);
     }
 
     function draw(time: number) {
@@ -233,6 +277,7 @@ export function ManimCanvas() {
       drawAxes(originX, originY, progress);
       drawPoints(originX, originY, scaleX, scaleY, time);
       drawCurve(originX, originY, scaleX, scaleY, progress);
+      drawTheoryMotif(time);
       drawGridTransform(width * 0.19, height * 0.7, Math.min(width, height) * 0.11, time);
       drawRandomWalk(width * 0.58, height * 0.84, width * 0.32, 118, progress);
       drawLabels(time);

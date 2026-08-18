@@ -217,14 +217,20 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <p className="eyebrow">CV</p>
               <h2>Curriculum Vitae</h2>
               <p>
-                Download my current CV below for the full picture of my research, teaching,
-                and coursework.
+                I keep my current CV visible here, with a download available for reference.
               </p>
             </div>
             <button className="button secondary" type="button" onClick={downloadCv} disabled={!siteConfig.cvAvailable}>
               Download CV <Download size={16} />
             </button>
           </div>
+          {siteConfig.cvAvailable ? (
+            <iframe
+              className="cv-frame"
+              src={`${siteConfig.cv}#view=FitH`}
+              title="George A Nowacek II CV"
+            />
+          ) : null}
         </div>
         <div className="contact-panel" id="contact">
           <p className="eyebrow">Contact</p>
