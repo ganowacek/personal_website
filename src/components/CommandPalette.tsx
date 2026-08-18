@@ -1,6 +1,5 @@
-import { GraduationCap, Mail, Search, X } from "lucide-react";
+import { BookOpen, GraduationCap, Mail, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { siteConfig } from "../data/site";
 
 type CommandPaletteProps = {
   onNavigate: (target: string) => void;
@@ -14,6 +13,7 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
     { label: "About", target: "#about", icon: GraduationCap },
     { label: "Research", target: "#research", icon: Search },
     { label: "Teaching", target: "#teaching", icon: GraduationCap },
+    { label: "Coursework", target: "#coursework", icon: BookOpen },
     { label: "Experience", target: "#experience", icon: Search },
     { label: "Now", target: "/now", icon: Search },
     { label: "Contact", target: "#contact", icon: Mail },

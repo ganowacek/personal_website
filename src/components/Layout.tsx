@@ -20,6 +20,7 @@ export function Layout({ children, onNavigate }: LayoutProps) {
     ["About", "#about"],
     ["Research", "#research"],
     ["Teaching", "#teaching"],
+    ["Coursework", "#coursework"],
     ["Experience", "#experience"],
     ["Now", "/now"],
     ["CV", "#cv"],

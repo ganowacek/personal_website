@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  BookOpen,
   Download,
   ExternalLink,
   FileText,
@@ -157,6 +158,25 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
+      <section className="section coursework-section" id="coursework">
+        <SectionHeader eyebrow="Coursework" title="The classes shaping my quantitative toolkit.">
+          I use coursework as a useful map of the mathematical, statistical, computational, and
+          scientific training listed on my CV.
+        </SectionHeader>
+        <div className="coursework-grid">
+          {education.filter((item) => item.coursework?.length).map((item) => (
+            <article className="coursework-card" key={`${item.institution}-coursework`}>
+              <div className="card-kicker"><BookOpen size={16} />{item.institution}</div>
+              <h3>{item.degree}</h3>
+              {item.dates ? <p className="meta">{item.dates}</p> : null}
+              <ul className="course-list">
+                {item.coursework?.map((course) => <li key={course}>{course}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="section split-section" id="experience">
         <div>
           <SectionHeader eyebrow="Experience" title="A focused timeline from my CV.">
@@ -181,7 +201,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <h3>{item.institution}</h3>
               <p>{item.degree}</p>
               {item.dates ? <small>{item.dates}</small> : null}
-              {item.coursework?.length ? <small>{item.coursework.join(" · ")}</small> : null}
               {item.honors?.length ? <small>{item.honors.join(" · ")}</small> : null}
             </article>
           ))}
