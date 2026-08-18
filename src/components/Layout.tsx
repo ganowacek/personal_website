@@ -1,0 +1,80 @@
+import { Code2, FileText, Mail, Moon, Network, Sun } from "lucide-react";
+import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
+import { siteConfig } from "../data/site";
+import { CommandPalette } from "./CommandPalette";
+
+type LayoutProps = {
+  children: ReactNode;
+  onNavigate: (target: string) => void;
+};
+
+export function Layout({ children, onNavigate }: LayoutProps) {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
+
+  const nav = [
+    ["About", "#about"],
+    ["Research", "#research"],
+    ["Projects", "#projects"],
+    ["Teaching", "#teaching"],
+    ["Experience", "#experience"],
+    ["Now", "/now"],
+    ["CV", "#cv"],
+  ];
+
+  return (
+    <>
+      <header className="site-nav">
+        <a className="wordmark" href="/" onClick={(event) => {
+          event.preventDefault();
+          onNavigate("/");
+        }}>
+          {siteConfig.shortName}
+        </a>
+        <nav aria-label="Primary navigation">
+          {nav.map(([label, href]) => (
+            <a key={label} href={href} onClick={(event) => {
+              event.preventDefault();
+              onNavigate(href);
+            }}>
+              {label}
+            </a>
+          ))}
+          {siteConfig.github ? (
+            <a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub</a>
+          ) : (
+            <span className="muted-link" title="Add a GitHub URL in src/data/site.ts">GitHub</span>
+          )}
+        </nav>
+        <div className="nav-actions">
+          <CommandPalette onNavigate={onNavigate} />
+          <button className="icon-button" type="button" aria-label="Toggle dark mode" title="Toggle dark mode" onClick={() => setDark((value) => !value)}>
+            {dark ? <Sun aria-hidden="true" size={18} /> : <Moon aria-hidden="true" size={18} />}
+          </button>
+        </div>
+      </header>
+
+      {children}
+
+      <footer className="site-footer">
+        <div>
+          <strong>{siteConfig.name}</strong>
+          <p>© {new Date().getFullYear()} {siteConfig.shortName}. Built with React · Hosted on GitHub.</p>
+        </div>
+        <div className="footer-links">
+          {siteConfig.github ? <a href={siteConfig.github} aria-label="GitHub"><Code2 size={18} /></a> : null}
+          {siteConfig.linkedin ? <a href={siteConfig.linkedin} aria-label="LinkedIn"><Network size={18} /></a> : null}
+          {siteConfig.email ? <a href={`mailto:${siteConfig.email}`} aria-label="Email"><Mail size={18} /></a> : null}
+          <a href="#cv" aria-label="CV" onClick={(event) => {
+            event.preventDefault();
+            onNavigate("#cv");
+          }}><FileText size={18} /></a>
+        </div>
+      </footer>
+    </>
+  );
+}
