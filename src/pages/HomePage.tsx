@@ -53,6 +53,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
             {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Network size={18} />LinkedIn</a> : null}
             {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={18} />Email</a> : null}
           </div>
+          <figure className="hero-diagram">
+            <img
+              src={siteConfig.diagram}
+              alt="Diagram-style title card for George A Nowacek II with statistical graphics"
+            />
+          </figure>
         </div>
         <aside className="hero-panel" aria-label="Current focus">
           <div className="stat-visual" aria-hidden="true">

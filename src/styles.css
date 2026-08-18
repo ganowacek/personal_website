@@ -219,6 +219,22 @@ input {
   color: var(--muted);
 }
 
+.hero-diagram {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 18px 60px rgba(7, 20, 38, 0.07);
+}
+
+.hero-diagram img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+}
+
 .social-row a,
 .social-row span,
 .contact-links a,
