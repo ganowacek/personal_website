@@ -8,13 +8,12 @@ import {
   Microscope,
   Network,
 } from "lucide-react";
-import { ManimCanvas } from "../components/ManimCanvas";
 import { SectionHeader } from "../components/SectionHeader";
 import { education } from "../data/education";
 import { experience } from "../data/experience";
 import { publications } from "../data/publications";
 import { researchEntries } from "../data/research";
-import { currentFocus, researchInterests, selectedTools, siteConfig } from "../data/site";
+import { researchInterests, selectedTools, siteConfig } from "../data/site";
 import { teaching } from "../data/teaching";
 import { downloadCv } from "../lib/cv";
 
@@ -51,42 +50,28 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
           <div className="social-row" aria-label="Professional links">
             {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Network size={18} />LinkedIn</a> : null}
+            {siteConfig.github ? <a href={siteConfig.github} target="_blank" rel="noreferrer"><ExternalLink size={18} />GitHub</a> : null}
             {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={18} />Email</a> : null}
           </div>
         </div>
-        <aside className="hero-panel manim-panel" aria-label="Current focus">
-          <ManimCanvas />
-          <div className="manim-caption">
-            <p className="eyebrow">Now</p>
-            <h2>Currently</h2>
-            <ul>
-              {currentFocus.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </aside>
+        <figure className="hero-portrait">
+          <img src={siteConfig.headshot} alt="Professional headshot of me, George A Nowacek II" />
+        </figure>
       </section>
 
-      <section className="section about-grid" id="about">
-        <div>
-          <SectionHeader eyebrow="About" title="Statistics, mathematics, and research work.">
-            I work across statistical science, mathematics, global health data science, medical
-            humanities, research, teaching, and operations.
-          </SectionHeader>
-          <p>
-            I have supported global maternal and perinatal health research at the UNC School of
-            Medicine, led coding lab sections in R, and worked across data documentation, literature
-            review, teaching, and operations.
-          </p>
-          <div className="tag-row compact">
-            {researchInterests.map((interest) => <span key={interest}>{interest}</span>)}
-          </div>
+      <section className="section about-section" id="about">
+        <SectionHeader eyebrow="About" title="Statistics, mathematics, and research work.">
+          I work across statistical science, mathematics, global health data science, medical
+          humanities, research, teaching, and operations.
+        </SectionHeader>
+        <p>
+          I have supported global maternal and perinatal health research at the UNC School of
+          Medicine, led coding lab sections in R, and worked across data documentation, literature
+          review, teaching, and operations.
+        </p>
+        <div className="tag-row compact">
+          {researchInterests.map((interest) => <span key={interest}>{interest}</span>)}
         </div>
-        <figure className="headshot-card">
-          <img src={siteConfig.headshot} alt="Professional headshot of me, George A Nowacek II" loading="lazy" />
-          <figcaption>George A Nowacek II</figcaption>
-        </figure>
       </section>
 
       <section className="section" id="research">
@@ -220,10 +205,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="contact-panel" id="contact">
           <p className="eyebrow">Contact</p>
           <h2>Let's connect.</h2>
-          <p>I can be reached by email or LinkedIn.</p>
+          <p>I can be reached by email, LinkedIn, or GitHub.</p>
           <div className="contact-links">
             {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={17} />Email</a> : null}
-            {siteConfig.linkedin ? <a href={siteConfig.linkedin}><Network size={17} />LinkedIn</a> : null}
+            {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Network size={17} />LinkedIn</a> : null}
+            {siteConfig.github ? <a href={siteConfig.github} target="_blank" rel="noreferrer"><ExternalLink size={17} />GitHub</a> : null}
           </div>
         </div>
       </section>

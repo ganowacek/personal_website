@@ -274,11 +274,9 @@ input {
 
 .button.secondary,
 .palette,
-.hero-panel,
 .research-card,
 .cv-panel,
 .contact-panel,
-.headshot-card,
 .education-panel,
 .now-card {
   background: color-mix(in srgb, var(--surface) 94%, var(--blue));
@@ -302,67 +300,25 @@ input {
   font-size: 0.94rem;
 }
 
-.hero-panel {
+.hero-portrait {
+  position: relative;
+  margin: 0;
+  justify-self: end;
+  width: 100%;
+  max-width: min(28rem, 100%);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 1.1rem;
-  box-shadow: 0 18px 60px rgba(7, 20, 38, 0.08);
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(7, 20, 38, 0.12);
   animation: rise-in 780ms 180ms ease both;
 }
 
-.hero-panel h2 {
-  margin: 1rem 0 0.5rem;
-}
-
-.hero-panel ul,
-.now-card ul {
-  margin: 0;
-  padding-left: 1.1rem;
-  color: var(--muted);
-}
-
-.manim-panel {
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  padding: 0;
-  background: var(--ink);
-}
-
-.manim-canvas-wrap {
-  position: relative;
-  min-height: clamp(18rem, 36vw, 30rem);
-  border-bottom: 1px solid rgba(247, 245, 239, 0.16);
-}
-
-.manim-canvas-wrap::after {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, transparent 58%, rgba(7, 20, 38, 0.46)),
-    linear-gradient(90deg, rgba(246, 200, 95, 0.08), transparent 38%, rgba(47, 157, 144, 0.1));
-  pointer-events: none;
-  content: "";
-}
-
-.manim-canvas-wrap canvas {
+.hero-portrait img {
   display: block;
   width: 100%;
-  height: clamp(18rem, 36vw, 30rem);
-}
-
-.manim-caption {
-  padding: 1.2rem;
-  color: var(--bg);
-}
-
-.manim-caption .eyebrow,
-.manim-caption h2 {
-  color: var(--bg);
-}
-
-.manim-caption ul {
-  color: color-mix(in srgb, var(--bg) 78%, transparent);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 64%;
 }
 
 .section,
@@ -397,7 +353,6 @@ input {
   font-size: 1.08rem;
 }
 
-.about-grid,
 .split-section,
 .cv-contact {
   display: grid;
@@ -406,32 +361,20 @@ input {
   align-items: start;
 }
 
-.about-grid > div > p,
+.about-section {
+  max-width: 72rem;
+}
+
+.about-section > p,
 .cv-panel p,
 .contact-panel p {
   color: var(--muted);
 }
 
-.headshot-card {
+.now-card ul {
   margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-
-.headshot-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center 64%;
-}
-
-.headshot-card figcaption {
-  border-top: 1px solid var(--line);
-  padding: 0.8rem 1rem;
+  padding-left: 1.1rem;
   color: var(--muted);
-  font-size: 0.9rem;
 }
 
 .research-grid,
@@ -842,7 +785,6 @@ code {
   }
 
   .hero,
-  .about-grid,
   .split-section,
   .cv-contact,
   .research-grid,
@@ -893,7 +835,7 @@ code {
 
   .hero-copy,
   .hero-lede,
-  .manim-panel {
+  .hero-portrait {
     max-width: calc(100vw - 2rem);
   }
 

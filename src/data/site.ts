@@ -7,6 +7,7 @@ export const siteConfig = {
   domain: "https://ganowacek.github.io/george-nowacek.com",
   email: "geanowacek@gmail.com",
   linkedin: "https://www.linkedin.com/in/george-a-nowacek-ii/",
+  github: "https://github.com/ganowacek",
   cv: withBasePath("George_Nowacek_CV.pdf"),
   headshot: withBasePath("headshot.jpg"),
   cvAvailable: true,
@@ -47,7 +48,7 @@ export const selectedTools = [
 ];
 
 export const nowContent = {
-  updated: "Current as of my August 2026 CV.",
+  updated: "Current as of August 2026.",
   studying: [
     "I'm pursuing an M.S. in Statistical Science at Duke University, expected May 2028",
     "My coursework includes Theory of Statistical Inference, Statistical Programming, Predictive Modeling, SQL, Real Analysis, Stochastic Modeling, and Optimization in ML",
