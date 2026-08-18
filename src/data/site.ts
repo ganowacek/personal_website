@@ -5,49 +5,63 @@ export const siteConfig = {
   name: "George A Nowacek II",
   shortName: "George A Nowacek II",
   domain: "https://ganowacek.github.io/george-nowacek.com",
-  email: "",
-  github: "https://github.com/ganowacek",
+  email: "geanowacek@gmail.com",
+  github: "",
   linkedin: "https://www.linkedin.com/in/george-a-nowacek-ii/",
   cv: withBasePath("George_Nowacek_CV.pdf"),
   headshot: withBasePath("headshot.jpg"),
   cvAvailable: true,
   title: "George A Nowacek II | Statistics, Research & Pure Mathematics",
   description:
-    "I apply quantitative methods, computation, and pure mathematics to problems in medicine and public health.",
+    "I am pursuing an M.S. in Statistical Science at Duke University, with research and teaching experience across global health data science, maternal health, statistical computing, and medical humanities.",
 };
 
 export const currentFocus = [
-  "I'm pursuing graduate study in Statistics at Duke University",
-  "I'm working on maternal-health and pregnancy research",
-  "I'm building statistical computing workflows in R",
-  "I'm studying quantitative methods for public health",
+  "I'm pursuing an M.S. in Statistical Science at Duke University",
+  "I'm serving as a Graduate TA for global health data science",
+  "I'm working with R, data visualization, and reproducible research",
+  "I'm continuing professional bookkeeping work with Southern Village Club",
 ];
 
 export const researchInterests = [
   "Biostatistics",
-  "Epidemiology",
-  "Maternal Health",
-  "Causal Inference",
-  "Bayesian Statistics",
+  "Global Maternal Health",
+  "Perinatal Health",
+  "Medical Imaging",
+  "Machine Learning",
   "Statistical Computing",
+  "Systematic Screening",
   "Data Visualization",
+  "Medical Humanities",
 ];
 
-export const selectedTools = ["R", "Python", "Git", "GitHub", "tidyverse", "LaTeX", "SAS"];
+export const selectedTools = [
+  "R",
+  "Python",
+  "SAS",
+  "LaTeX",
+  "Julia (basic)",
+  "Excel",
+  "Google Sheets",
+  "QuickBooks Payroll",
+  "Canvas LMS",
+];
 
 export const nowContent = {
-  updated: "I'll add a last-updated date here as this page becomes more current.",
+  updated: "Current as of my August 2026 CV.",
   studying: [
-    "I'm taking graduate statistics coursework at Duke University",
-    "I'm studying Bayesian methods and causal inference for applied research questions",
+    "I'm pursuing an M.S. in Statistical Science at Duke University, expected May 2028",
+    "My coursework includes Theory of Statistical Inference, Statistical Programming, Predictive Modeling, SQL, Real Analysis, Stochastic Modeling, and Optimization in ML",
   ],
   research: [
-    "I'm contributing to maternal-health research with the UNC School of Medicine Global Women's Health group",
-    "I'm developing reproducible workflows for pregnancy and obstetric datasets",
+    "I supported global maternal and perinatal health research with UNC School of Medicine's Global Women's Health group",
+    "I developed dataset documentation for 1,100+ variables and 12,000+ participant encounters in the LABOR Study",
   ],
   building: [
-    "I'm building research tooling for statistical analysis and documentation",
-    "I'm maintaining a public home for publications, projects, and teaching materials",
+    "I lead coding lab sections for STA 198L: Introduction to Global Health Data Science",
+    "I manage payroll, invoices, facility charges, and account reconciliation as Bookkeeper for Southern Village Club",
   ],
-  reading: ["I'll add current books, papers, and topics here."],
+  reading: [
+    "Through the Fons Vitae Medical Humanities Fellowship, I study medicine, healing, and human flourishing through theology, ethics, and literature",
+  ],
 };

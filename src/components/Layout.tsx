@@ -24,6 +24,7 @@ export function Layout({ children, onNavigate }: LayoutProps) {
     ["Experience", "#experience"],
     ["Now", "/now"],
     ["CV", "#cv"],
+    ...(siteConfig.github ? [["GitHub", siteConfig.github]] : []),
   ];
 
   return (
@@ -44,11 +45,6 @@ export function Layout({ children, onNavigate }: LayoutProps) {
               {label}
             </a>
           ))}
-          {siteConfig.github ? (
-            <a href={siteConfig.github} target="_blank" rel="noreferrer">GitHub</a>
-          ) : (
-            <span className="muted-link" title="Add a GitHub URL in src/data/site.ts">GitHub</span>
-          )}
         </nav>
         <div className="nav-actions">
           <CommandPalette onNavigate={onNavigate} />

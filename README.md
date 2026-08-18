@@ -70,7 +70,9 @@ Add real contact and social URLs in `src/data/site.ts`. Unknown links are intent
 
 This repository includes a GitHub Actions workflow at `.github/workflows/pages.yml`.
 
-On every push to `main`, the workflow:
+While the repository is private and the public site is paused, the workflow runs only when started manually from the Actions tab. When the site is ready to publish again, re-enable GitHub Pages and either run the workflow manually or add the `push` trigger back.
+
+When run, the workflow:
 
 1. Checks out the repository.
 2. Installs dependencies with `npm ci`.

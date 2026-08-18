@@ -405,6 +405,25 @@ input {
   background: color-mix(in srgb, var(--surface-soft) 72%, transparent);
 }
 
+.stack {
+  display: grid;
+  gap: 1rem;
+  max-width: 58rem;
+}
+
+.publication {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(1.1rem, 2.3vw, 1.5rem);
+  background: var(--surface);
+}
+
+.publication span {
+  color: var(--deep-blue);
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
 .empty-state {
   display: flex;
   align-items: center;
@@ -492,6 +511,13 @@ input {
   margin-top: 1.2rem;
   border-top: 1px solid var(--line);
   padding-top: 1.2rem;
+}
+
+.education-panel small {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 .cv-contact {

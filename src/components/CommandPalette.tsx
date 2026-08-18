@@ -18,7 +18,7 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
     { label: "Experience", target: "#experience", icon: Search },
     { label: "Now", target: "/now", icon: Search },
     { label: "Contact", target: "#contact", icon: Mail },
-    { label: "GitHub", target: siteConfig.github, icon: Code2, disabled: !siteConfig.github },
+    ...(siteConfig.github ? [{ label: "GitHub", target: siteConfig.github, icon: Code2 }] : []),
   ];
 
   const filtered = useMemo(() => {
@@ -43,8 +43,7 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  function select(target: string, disabled?: boolean) {
-    if (disabled) return;
+  function select(target: string) {
     setOpen(false);
     setQuery("");
     onNavigate(target);
@@ -86,12 +85,10 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
                     type="button"
                     key={command.label}
                     className="palette-item"
-                    disabled={command.disabled}
-                    onClick={() => select(command.target, command.disabled)}
+                    onClick={() => select(command.target)}
                   >
                     <Icon aria-hidden="true" size={17} />
                     <span>{command.label}</span>
-                    {command.disabled ? <small>add link in site config</small> : null}
                   </button>
                 );
               })}

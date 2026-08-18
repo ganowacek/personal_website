@@ -1,16 +1,15 @@
 import {
   ArrowRight,
-  BookOpen,
+  Code2,
   Download,
   ExternalLink,
   FileText,
   GraduationCap,
   Mail,
   Microscope,
-  MoveUpRight,
-  Code2,
   Network,
 } from "lucide-react";
+import { SectionHeader } from "../components/SectionHeader";
 import { education } from "../data/education";
 import { experience } from "../data/experience";
 import { projects } from "../data/projects";
@@ -19,7 +18,6 @@ import { researchProjects } from "../data/research";
 import { currentFocus, researchInterests, selectedTools, siteConfig } from "../data/site";
 import { teaching } from "../data/teaching";
 import { downloadCv, openCv } from "../lib/cv";
-import { SectionHeader } from "../components/SectionHeader";
 
 type HomePageProps = {
   onNavigate: (target: string) => void;
@@ -33,8 +31,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <p className="eyebrow">Statistics · Research · Pure Mathematics</p>
           <h1>{siteConfig.name}</h1>
           <p className="hero-lede">
-            I apply quantitative methods, computation, and pure mathematics to meaningful problems in
-            medicine and public health.
+            I am pursuing an M.S. in Statistical Science at Duke University after studying
+            Mathematics with a minor in Statistics and Analytics at UNC-Chapel Hill.
           </p>
           <div className="hero-actions">
             <button className="button primary" type="button" onClick={() => onNavigate("#research")}>
@@ -45,15 +43,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
               type="button"
               onClick={downloadCv}
               disabled={!siteConfig.cvAvailable}
-              title={siteConfig.cvAvailable ? "Download CV" : "Add CV PDF and set cvAvailable to true"}
+              title="Download CV"
             >
               Download CV <Download aria-hidden="true" size={17} />
             </button>
           </div>
           <div className="social-row" aria-label="Professional links">
-            {siteConfig.github ? <a href={siteConfig.github} target="_blank" rel="noreferrer"><Code2 size={18} />GitHub</a> : <span><Code2 size={18} />I'll add my GitHub link</span>}
-            {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Network size={18} />LinkedIn</a> : <span><Network size={18} />I'll add my LinkedIn link</span>}
-            {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={18} />Email</a> : <span><Mail size={18} />I'll add my email</span>}
+            {siteConfig.github ? <a href={siteConfig.github} target="_blank" rel="noreferrer"><Code2 size={18} />GitHub</a> : null}
+            {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Network size={18} />LinkedIn</a> : null}
+            {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={18} />Email</a> : null}
           </div>
         </div>
         <aside className="hero-panel" aria-label="Current focus">
@@ -75,14 +73,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       <section className="section about-grid" id="about">
         <div>
-          <SectionHeader eyebrow="About" title="Quantitative work, grounded in real questions.">
-            I am a graduate student in Statistics at Duke University with an undergraduate
-            background in Mathematics from UNC-Chapel Hill.
+          <SectionHeader eyebrow="About" title="Quantitative work, grounded in my CV.">
+            My CV brings together statistical science, mathematics, global health data science,
+            medical humanities, research, teaching, and professional experience.
           </SectionHeader>
           <p>
-            I work across academic research, statistical computing, and teaching, with interests
-            spanning public health, medical research, epidemiology, pure mathematics, and quantitative
-            methodology.
+            I have supported global maternal and perinatal health research at the UNC School of
+            Medicine, led coding lab sections in R, and worked across data documentation, literature
+            review, teaching, and operations.
           </p>
           <div className="tag-row compact">
             {researchInterests.map((interest) => <span key={interest}>{interest}</span>)}
@@ -95,16 +93,16 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section" id="research">
-        <SectionHeader eyebrow="Research" title="Maternal health, epidemiology, and reproducible statistics.">
-          I keep selected research areas and data projects structured so I can add publications,
-          posters, code, and datasets as they become public.
+        <SectionHeader eyebrow="Research" title="Maternal health, medical imaging, and reproducible documentation.">
+          My research experience includes global maternal and perinatal health, medical imaging,
+          machine learning, systematic screening, clinical study coordination, and literature review.
         </SectionHeader>
         <div className="research-grid">
           {researchProjects.map((project) => (
             <article className="research-card" key={project.title}>
               <div className="card-kicker"><Microscope size={16} />{project.institution}</div>
               <h3>{project.title}</h3>
-              {project.group ? <p className="meta">{project.group}{project.dates ? ` · ${project.dates}` : ""}</p> : null}
+              {project.group || project.dates ? <p className="meta">{[project.group, project.dates].filter(Boolean).join(" · ")}</p> : null}
               <p>{project.description}</p>
               <div className="tag-row">
                 {project.methods.slice(0, 6).map((method) => <span key={method}>{method}</span>)}
@@ -115,32 +113,31 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section publication-band">
-        <SectionHeader eyebrow="Publications" title="A publication list ready for real records.">
-          I will add DOI, PubMed, PDF, manuscript, citation, and conference information here as
-          my publication record develops.
+        <SectionHeader eyebrow="Publications" title="Published work listed on my CV.">
+          I list publication records here only when they appear on my CV.
         </SectionHeader>
-        {publications.length ? (
-          <div className="stack">
-            {publications.map((publication) => (
-              <article className="publication" key={publication.title}>
-                <span>{publication.status}</span>
-                <h3>{publication.title}</h3>
-                <p>{publication.authors}</p>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div className="empty-state">
-            <BookOpen aria-hidden="true" size={24} />
-            <p>I will add manuscripts, conference presentations, and papers here as they are ready.</p>
-          </div>
-        )}
+        <div className="stack">
+          {publications.map((publication) => (
+            <article className="publication" key={publication.title}>
+              <span>{publication.status}</span>
+              <h3>{publication.title}</h3>
+              <p>{publication.citation}</p>
+              {publication.doi ? (
+                <div className="project-links">
+                  <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noreferrer">
+                    DOI <ExternalLink size={15} />
+                  </a>
+                </div>
+              ) : null}
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="section" id="projects">
-        <SectionHeader eyebrow="Projects" title="Technical projects with my sense of traceability.">
-          I use this space for statistical computing, visualization, R/Python work, web projects,
-          and research tools.
+        <SectionHeader eyebrow="Selected Work" title="Concrete projects and outputs from my CV.">
+          I keep this section limited to research, teaching, and documentation work that my CV
+          explicitly lists.
         </SectionHeader>
         <div className="project-grid">
           {projects.map((project) => (
@@ -151,19 +148,20 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <div className="tag-row">
                 {project.tools.map((tool) => <span key={tool}>{tool}</span>)}
               </div>
-              <div className="project-links">
-                {project.github ? <a href={project.github}>Repository <MoveUpRight size={15} /></a> : <span>I'll add the repository link</span>}
-                {project.demo ? <a href={project.demo}>Demo <MoveUpRight size={15} /></a> : null}
-              </div>
+              {project.github || project.demo ? (
+                <div className="project-links">
+                  {project.github ? <a href={project.github}>Repository</a> : null}
+                  {project.demo ? <a href={project.demo}>Demo</a> : null}
+                </div>
+              ) : null}
             </article>
           ))}
         </div>
       </section>
 
       <section className="section teaching-section" id="teaching">
-        <SectionHeader eyebrow="Teaching" title="Clear explanations, reproducible analysis, and practical computation.">
-          I teach and support work across statistics, R, visualization, academic leadership, and
-          interdisciplinary education.
+        <SectionHeader eyebrow="Teaching" title="Teaching roles listed on my CV.">
+          My CV lists teaching roles at Duke University and UNC-Chapel Hill.
         </SectionHeader>
         <div className="teaching-list">
           {teaching.map((item) => (
@@ -172,6 +170,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <div>
                 <p className="meta">{item.institution}</p>
                 <h3>{item.role}</h3>
+                {item.course || item.term ? <p className="meta">{[item.course, item.term].filter(Boolean).join(" · ")}</p> : null}
                 <p>{item.description}</p>
                 <div className="tag-row compact">{item.topics.map((topic) => <span key={topic}>{topic}</span>)}</div>
               </div>
@@ -182,9 +181,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       <section className="section split-section" id="experience">
         <div>
-          <SectionHeader eyebrow="Experience" title="A focused timeline rather than a full CV clone.">
-            I highlight selected research, teaching, employment, leadership, and education entries
-            here, with my full CV carrying the rest.
+          <SectionHeader eyebrow="Experience" title="A focused timeline from my CV.">
+            I highlight selected research, teaching, fellowship, employment, and education entries
+            that appear on my CV.
           </SectionHeader>
           <div className="timeline">
             {experience.map((item) => (
@@ -203,11 +202,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <article key={item.institution}>
               <h3>{item.institution}</h3>
               <p>{item.degree}</p>
+              {item.dates ? <small>{item.dates}</small> : null}
               {item.coursework?.length ? <small>{item.coursework.join(" · ")}</small> : null}
+              {item.honors?.length ? <small>{item.honors.join(" · ")}</small> : null}
             </article>
           ))}
           <div className="tools">
-            <p className="eyebrow">Selected Tools</p>
+            <p className="eyebrow">Technical Skills</p>
             <div className="tag-row compact">{selectedTools.map((tool) => <span key={tool}>{tool}</span>)}</div>
           </div>
         </aside>
@@ -228,14 +229,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="contact-panel" id="contact">
           <p className="eyebrow">Contact</p>
           <h2>Let's connect.</h2>
-          <p>
-            I am open to research collaboration, statistical consulting, teaching conversations,
-            and professional opportunities in health research, statistics, and pure mathematics.
-          </p>
+          <p>My CV lists email and LinkedIn as my contact points.</p>
           <div className="contact-links">
-            {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={17} />Email</a> : <span><Mail size={17} />I'll add my email</span>}
-            {siteConfig.linkedin ? <a href={siteConfig.linkedin}><Network size={17} />LinkedIn</a> : <span><Network size={17} />I'll add my LinkedIn link</span>}
-            {siteConfig.github ? <a href={siteConfig.github}><Code2 size={17} />GitHub</a> : <span><Code2 size={17} />I'll add my GitHub link</span>}
+            {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={17} />Email</a> : null}
+            {siteConfig.linkedin ? <a href={siteConfig.linkedin}><Network size={17} />LinkedIn</a> : null}
+            {siteConfig.github ? <a href={siteConfig.github}><Code2 size={17} />GitHub</a> : null}
           </div>
         </div>
       </section>
