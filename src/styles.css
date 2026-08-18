@@ -272,9 +272,11 @@ input {
 
 .button.secondary,
 .palette,
+.credential-card,
 .research-card,
+.certification-panel,
 .contact-panel,
-.education-panel {
+.publication {
   background: color-mix(in srgb, var(--surface) 94%, var(--blue));
 }
 
@@ -345,19 +347,23 @@ input {
   font-size: 1.08rem;
 }
 
-.split-section,
+.credential-grid,
+.skills-grid,
 .contact-section {
   display: grid;
-  grid-template-columns: 1fr;
   gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: start;
 }
 
-.about-section {
-  max-width: 72rem;
+.credential-grid,
+.skills-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.58fr);
 }
 
-.about-section > p,
+.contact-section {
+  grid-template-columns: 1fr;
+}
+
 .contact-panel p {
   color: var(--muted);
 }
@@ -368,30 +374,44 @@ input {
   gap: 1rem;
 }
 
+.credential-card,
 .research-card,
+.certification-panel,
 .contact-panel,
-.education-panel {
+.publication {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: clamp(1.1rem, 2.3vw, 1.5rem);
 }
 
+.credential-card h3,
 .research-card h3,
 .timeline h3,
 .teaching-list h3,
-.education-panel h3,
+.certification-list h3,
 .publication h3 {
   margin: 0.35rem 0;
   font-size: clamp(1.15rem, 1.8vw, 1.45rem);
   line-height: 1.2;
 }
 
+.credential-card p,
 .research-card p,
 .timeline p,
 .teaching-list p,
-.education-panel p,
+.certification-list p,
 .publication p {
   color: var(--muted);
+}
+
+.honors-card ul {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.honors-card li + li {
+  margin-top: 0.55rem;
 }
 
 .card-kicker {
@@ -436,13 +456,6 @@ input {
   display: grid;
   gap: 1rem;
   max-width: 58rem;
-}
-
-.publication {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: clamp(1.1rem, 2.3vw, 1.5rem);
-  background: var(--surface);
 }
 
 .publication span {
@@ -506,18 +519,55 @@ input {
   padding-top: 1rem;
 }
 
+.skills-section {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface-soft) 54%, transparent), transparent 58%),
+    color-mix(in srgb, var(--surface) 42%, transparent);
+}
+
+.skills-tags {
+  max-width: 48rem;
+  margin-top: 0;
+}
+
+.skills-tags span {
+  font-size: 0.9rem;
+}
+
+.certification-list {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.certification-list article + article {
+  border-top: 1px solid var(--line);
+  padding-top: 0.9rem;
+}
+
+.fellowship-section {
+  background: color-mix(in srgb, var(--surface-soft) 48%, transparent);
+}
+
+.fellowship-section .stack {
+  max-width: 64rem;
+}
+
 .research-card,
+.credential-card,
+.certification-panel,
 .publication,
 .teaching-list article,
 .timeline article,
-.education-panel,
 .contact-panel {
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .research-card:hover,
+.credential-card:hover,
+.certification-panel:hover,
 .publication:hover,
-.education-panel:hover {
+.contact-panel:hover {
   border-color: color-mix(in srgb, var(--blue) 45%, var(--line));
   box-shadow: 0 18px 42px rgba(7, 20, 38, 0.08);
   transform: translateY(-2px);
@@ -536,6 +586,7 @@ input {
 .timeline {
   display: grid;
   gap: 0;
+  max-width: 70rem;
   border-left: 1px solid var(--line);
 }
 
@@ -560,25 +611,6 @@ input {
   color: var(--deep-blue);
   font-size: 0.82rem;
   font-weight: 760;
-}
-
-.education-panel {
-  position: sticky;
-  top: 5.5rem;
-}
-
-.education-panel article + article,
-.tools {
-  margin-top: 1.2rem;
-  border-top: 1px solid var(--line);
-  padding-top: 1.2rem;
-}
-
-.education-panel small {
-  display: block;
-  margin-top: 0.45rem;
-  color: var(--muted);
-  line-height: 1.45;
 }
 
 .contact-panel {
@@ -721,7 +753,8 @@ code {
   }
 
   .hero,
-  .split-section,
+  .credential-grid,
+  .skills-grid,
   .contact-section,
   .research-grid {
     grid-template-columns: 1fr;
@@ -731,9 +764,6 @@ code {
     min-height: auto;
   }
 
-  .education-panel {
-    position: static;
-  }
 }
 
 @media (max-width: 560px) {

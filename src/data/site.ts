@@ -16,18 +16,6 @@ export const siteConfig = {
     "I am pursuing an M.S. in Statistical Science at Duke University, with research and teaching experience across global health data science, maternal health, statistical computing, and medical humanities.",
 };
 
-export const researchInterests = [
-  "Biostatistics",
-  "Global Maternal Health",
-  "Perinatal Health",
-  "Medical Imaging",
-  "Machine Learning",
-  "Statistical Computing",
-  "Systematic Screening",
-  "Data Visualization",
-  "Medical Humanities",
-];
-
 export const selectedTools = [
   "R",
   "Python",

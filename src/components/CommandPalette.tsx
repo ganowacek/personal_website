@@ -10,10 +10,13 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
   const [query, setQuery] = useState("");
 
   const commands = [
-    { label: "About", target: "#about", icon: GraduationCap },
-    { label: "Research", target: "#research", icon: Search },
+    { label: "Education", target: "#education", icon: GraduationCap },
     { label: "Teaching", target: "#teaching", icon: GraduationCap },
+    { label: "Research", target: "#research", icon: Search },
+    { label: "Publication", target: "#publications", icon: Search },
     { label: "Coursework", target: "#coursework", icon: BookOpen },
+    { label: "Skills", target: "#skills", icon: Search },
+    { label: "Fellowships", target: "#fellowships", icon: GraduationCap },
     { label: "Experience", target: "#experience", icon: Search },
     { label: "Contact", target: "#contact", icon: Mail },
   ];

@@ -18,10 +18,13 @@ export function Layout({ children, onNavigate }: LayoutProps) {
   }, [dark]);
 
   const nav = [
-    ["About", "#about"],
-    ["Research", "#research"],
+    ["Education", "#education"],
     ["Teaching", "#teaching"],
+    ["Research", "#research"],
+    ["Publication", "#publications"],
     ["Coursework", "#coursework"],
+    ["Skills", "#skills"],
+    ["Fellowships", "#fellowships"],
     ["Experience", "#experience"],
   ];
 

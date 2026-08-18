@@ -49,6 +49,9 @@ Most content is stored in small data files:
 - Teaching: `src/data/teaching.ts`
 - Experience: `src/data/experience.ts`
 - Education: `src/data/education.ts`
+- Coursework: `src/data/coursework.ts`
+- Certifications: `src/data/certifications.ts`
+- Fellowships: `src/data/fellowships.ts`
 - Site-wide settings and links: `src/data/site.ts`
 
 Use the CV as the source of truth for public content. Do not add biographical, research, teaching, publication, experience, or education details unless they are supported by the CV or intentionally added to it first.

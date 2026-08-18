@@ -8,11 +8,14 @@ import {
   Network,
 } from "lucide-react";
 import { SectionHeader } from "../components/SectionHeader";
+import { certifications } from "../data/certifications";
+import { coursework } from "../data/coursework";
 import { education } from "../data/education";
 import { experience } from "../data/experience";
+import { fellowships } from "../data/fellowships";
 import { publications } from "../data/publications";
 import { researchEntries } from "../data/research";
-import { researchInterests, selectedTools, siteConfig } from "../data/site";
+import { selectedTools, siteConfig } from "../data/site";
 import { teaching } from "../data/teaching";
 
 type HomePageProps = {
@@ -20,7 +23,7 @@ type HomePageProps = {
 };
 
 export function HomePage({ onNavigate }: HomePageProps) {
-  const coursework = education.flatMap((item) => item.coursework ?? []);
+  const honors = education.flatMap((item) => item.honors ?? []);
 
   return (
     <main>
@@ -33,8 +36,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
             Mathematics with a minor in Statistics and Analytics at UNC-Chapel Hill.
           </p>
           <div className="hero-actions">
-            <button className="button primary" type="button" onClick={() => onNavigate("#research")}>
-              View My Work <ArrowRight aria-hidden="true" size={17} />
+            <button className="button primary" type="button" onClick={() => onNavigate("#education")}>
+              View Credentials <ArrowRight aria-hidden="true" size={17} />
             </button>
             <a
               className="button secondary"
@@ -57,26 +60,49 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </figure>
       </section>
 
-      <section className="section about-section" id="about">
-        <SectionHeader eyebrow="About" title="Statistics, mathematics, and research work.">
-          I work across statistical science, mathematics, global health data science, medical
-          humanities, research, teaching, and operations.
-        </SectionHeader>
-        <p>
-          I have supported global maternal and perinatal health research at the UNC School of
-          Medicine, led coding lab sections in R, and worked across data documentation, literature
-          review, teaching, and operations.
-        </p>
-        <div className="tag-row compact">
-          {researchInterests.map((interest) => <span key={interest}>{interest}</span>)}
+      <section className="section credential-section" id="education">
+        <SectionHeader eyebrow="Education" title="Education" />
+        <div className="credential-grid">
+          <div className="stack">
+            {education.map((item) => (
+              <article className="credential-card" key={item.institution}>
+                <p className="meta">{item.dates}</p>
+                <h3>{item.institution}</h3>
+                <p>{item.degree}</p>
+              </article>
+            ))}
+          </div>
+          {honors.length ? (
+            <aside className="credential-card honors-card">
+              <p className="eyebrow">Honors</p>
+              <ul>
+                {honors.map((honor) => <li key={honor}>{honor}</li>)}
+              </ul>
+            </aside>
+          ) : null}
+        </div>
+      </section>
+
+      <section className="section teaching-section" id="teaching">
+        <SectionHeader eyebrow="Teaching Experience" title="Teaching Experience" />
+        <div className="teaching-list">
+          {teaching.map((item) => (
+            <article key={`${item.institution}-${item.role}`}>
+              <div className="teaching-icon"><GraduationCap size={19} /></div>
+              <div>
+                <p className="meta">{[item.institution, item.term].filter(Boolean).join(" · ")}</p>
+                <h3>{item.role}</h3>
+                {item.course ? <p className="meta">{item.course}</p> : null}
+                <p>{item.description}</p>
+                <div className="tag-row compact">{item.topics.map((topic) => <span key={topic}>{topic}</span>)}</div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
       <section className="section" id="research">
-        <SectionHeader eyebrow="Research" title="Maternal health, medical imaging, and reproducible documentation.">
-          I bring statistical and mathematical training to research settings that need careful
-          data work, literature review, and reproducible documentation.
-        </SectionHeader>
+        <SectionHeader eyebrow="Research Experience" title="Research Appointments" />
         <div className="research-grid">
           {researchEntries.map((entry) => (
             <article className="research-card" key={entry.title}>
@@ -92,10 +118,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      <section className="section publication-band">
-        <SectionHeader eyebrow="Publications" title="Published work.">
-          I include publication records here when they are ready to share publicly.
-        </SectionHeader>
+      <section className="section publication-band" id="publications">
+        <SectionHeader eyebrow="Publication" title="Publication" />
         <div className="stack">
           {publications.map((publication) => (
             <article className="publication" key={publication.title}>
@@ -114,67 +138,58 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
       </section>
 
-      <section className="section teaching-section" id="teaching">
-        <SectionHeader eyebrow="Teaching" title="Teaching in statistics and medical humanities.">
-          I have taught in coding lab, data science, seminar, and medical humanities settings.
-        </SectionHeader>
-        <div className="teaching-list">
-          {teaching.map((item) => (
-            <article key={`${item.institution}-${item.role}`}>
-              <div className="teaching-icon"><GraduationCap size={19} /></div>
-              <div>
-                <p className="meta">{item.institution}</p>
-                <h3>{item.role}</h3>
-                {item.course || item.term ? <p className="meta">{[item.course, item.term].filter(Boolean).join(" · ")}</p> : null}
-                <p>{item.description}</p>
-                <div className="tag-row compact">{item.topics.map((topic) => <span key={topic}>{topic}</span>)}</div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="section coursework-section" id="coursework">
-        <SectionHeader eyebrow="Coursework" title="Coursework.">
-          I use these courses as a concise map of my mathematical, statistical, computational, and
-          scientific training.
-        </SectionHeader>
+        <SectionHeader eyebrow="Relevant Coursework" title="Relevant Coursework" />
         <ul className="course-list coursework-board" aria-label="Coursework">
           {coursework.map((course) => <li key={course}>{course}</li>)}
         </ul>
       </section>
 
-      <section className="section split-section" id="experience">
-        <div>
-          <SectionHeader eyebrow="Experience" title="A focused timeline.">
-            I highlight selected research, teaching, fellowship, employment, and education entries.
-          </SectionHeader>
-          <div className="timeline">
-            {experience.map((item) => (
-              <article key={`${item.organization}-${item.title}`}>
-                <span>{item.type}</span>
-                <h3>{item.title}</h3>
-                <p className="meta">{item.organization}{item.dates ? ` · ${item.dates}` : ""}</p>
-                <p>{item.summary}</p>
-              </article>
-            ))}
+      <section className="section skills-section" id="skills">
+        <div className="skills-grid">
+          <div>
+            <SectionHeader eyebrow="Technical Skills" title="Technical Skills" />
+            <div className="tag-row skills-tags">{selectedTools.map((tool) => <span key={tool}>{tool}</span>)}</div>
+          </div>
+          <div className="certification-panel" id="certifications">
+            <p className="eyebrow">Certifications</p>
+            <div className="certification-list">
+              {certifications.map((certification) => (
+                <article key={certification.name}>
+                  <h3>{certification.name}</h3>
+                  <p className="meta">{[certification.issuer, certification.dates].filter(Boolean).join(" · ")}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
-        <aside className="education-panel">
-          <p className="eyebrow">Education</p>
-          {education.map((item) => (
-            <article key={item.institution}>
-              <h3>{item.institution}</h3>
-              <p>{item.degree}</p>
-              {item.dates ? <small>{item.dates}</small> : null}
-              {item.honors?.length ? <small>{item.honors.join(" · ")}</small> : null}
+      </section>
+
+      <section className="section fellowship-section" id="fellowships">
+        <SectionHeader eyebrow="Fellowships" title="Fellowships" />
+        <div className="stack">
+          {fellowships.map((fellowship) => (
+            <article className="credential-card" key={fellowship.name}>
+              <p className="meta">{[fellowship.organization, fellowship.dates].filter(Boolean).join(" · ")}</p>
+              <h3>{fellowship.name}</h3>
+              <p>{fellowship.description}</p>
             </article>
           ))}
-          <div className="tools">
-            <p className="eyebrow">Technical Skills</p>
-            <div className="tag-row compact">{selectedTools.map((tool) => <span key={tool}>{tool}</span>)}</div>
-          </div>
-        </aside>
+        </div>
+      </section>
+
+      <section className="section" id="experience">
+        <SectionHeader eyebrow="Professional Experience" title="Professional Experience" />
+        <div className="timeline">
+          {experience.map((item) => (
+            <article key={`${item.organization}-${item.title}`}>
+              <span>{item.dates}</span>
+              <h3>{item.title}</h3>
+              <p className="meta">{item.organization}</p>
+              <p>{item.summary}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="section contact-section" id="contact">
