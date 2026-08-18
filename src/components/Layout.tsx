@@ -1,7 +1,7 @@
 import { Code2, FileText, Mail, Moon, Network, Sun } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
-import { siteConfig } from "../data/site";
+import { siteConfig, withBasePath } from "../data/site";
 import { CommandPalette } from "./CommandPalette";
 
 type LayoutProps = {
@@ -29,7 +29,7 @@ export function Layout({ children, onNavigate }: LayoutProps) {
   return (
     <>
       <header className="site-nav">
-        <a className="wordmark" href="/" onClick={(event) => {
+        <a className="wordmark" href={withBasePath("")} onClick={(event) => {
           event.preventDefault();
           onNavigate("/");
         }}>
@@ -37,7 +37,7 @@ export function Layout({ children, onNavigate }: LayoutProps) {
         </a>
         <nav aria-label="Primary navigation">
           {nav.map(([label, href]) => (
-            <a key={label} href={href} onClick={(event) => {
+            <a key={label} href={href.startsWith("/") ? withBasePath(href) : href} onClick={(event) => {
               event.preventDefault();
               onNavigate(href);
             }}>

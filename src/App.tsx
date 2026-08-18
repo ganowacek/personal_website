@@ -4,8 +4,29 @@ import { HomePage } from "./pages/HomePage";
 import { NotFound } from "./pages/NotFound";
 import { NowPage } from "./pages/NowPage";
 
+const basePath = import.meta.env.BASE_URL;
+
 function normalizePath(pathname: string) {
   return pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
+}
+
+function routeFromLocation(pathname: string) {
+  const normalizedPath = normalizePath(pathname);
+  const normalizedBase = normalizePath(basePath);
+
+  if (normalizedBase !== "/" && normalizedPath.startsWith(normalizedBase)) {
+    const withoutBase = normalizedPath.slice(normalizedBase.length);
+    return withoutBase ? normalizePath(`/${withoutBase.replace(/^\/+/, "")}`) : "/";
+  }
+
+  return normalizedPath || "/";
+}
+
+function appUrl(target: string) {
+  if (target === "/") return basePath;
+  if (target.startsWith("#")) return `${basePath}${target}`;
+  if (target.startsWith("/")) return `${basePath}${target.replace(/^\/+/, "")}`;
+  return target;
 }
 
 function navigateTo(target: string) {
@@ -15,27 +36,25 @@ function navigateTo(target: string) {
   }
 
   if (target.startsWith("#")) {
-    if (normalizePath(window.location.pathname) !== "/") {
-      window.history.pushState(null, "", `/${target}`);
-      window.dispatchEvent(new PopStateEvent("popstate"));
-    }
+    window.history.pushState(null, "", appUrl(target));
+    window.dispatchEvent(new PopStateEvent("popstate"));
     setTimeout(() => {
       document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 0);
     return;
   }
 
-  window.history.pushState(null, "", target);
+  window.history.pushState(null, "", appUrl(target));
   window.dispatchEvent(new PopStateEvent("popstate"));
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 export default function App() {
-  const [path, setPath] = useState(() => normalizePath(window.location.pathname));
+  const [path, setPath] = useState(() => routeFromLocation(window.location.pathname));
 
   useEffect(() => {
     function onPopState() {
-      setPath(normalizePath(window.location.pathname));
+      setPath(routeFromLocation(window.location.pathname));
     }
 
     window.addEventListener("popstate", onPopState);

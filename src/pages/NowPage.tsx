@@ -1,4 +1,4 @@
-import { nowContent, siteConfig } from "../data/site";
+import { nowContent, withBasePath } from "../data/site";
 
 export function NowPage() {
   const sections = [
@@ -11,7 +11,7 @@ export function NowPage() {
   return (
     <main className="now-page">
       <section className="page-hero">
-        <a className="back-link" href="/">Back to home</a>
+        <a className="back-link" href={withBasePath("")}>Back to home</a>
         <p className="eyebrow">Now</p>
         <h1>What I am focused on now.</h1>
         <p>

@@ -1,6 +1,12 @@
 # George A Nowacek II Personal Website
 
-Personal website for George A Nowacek II, built as a fast static React site for GitHub Pages and the custom domain `george-nowacek.com`.
+Personal website for George A Nowacek II, built as a fast static React site for GitHub Pages.
+
+Published site:
+
+```text
+https://ganowacek.github.io/george-nowacek.com/
+```
 
 ## Local Development
 
@@ -84,36 +90,6 @@ After pushing the repository to GitHub:
 3. Under Build and deployment, set Source to GitHub Actions.
 4. Push to `main` or run the workflow manually from the Actions tab.
 
-## Custom Domain
-
-The file `public/CNAME` contains:
-
-```text
-george-nowacek.com
-```
-
-Vite copies this into the production build, which tells GitHub Pages the intended custom domain.
-
-In GitHub repository settings:
-
-1. Go to Settings -> Pages.
-2. Enter `george-nowacek.com` as the custom domain.
-3. Save the domain.
-4. Wait for DNS and certificate provisioning.
-5. Enable Enforce HTTPS once GitHub makes it available.
-
-For current DNS records, use GitHub's official custom-domain documentation rather than copying IP addresses from this README:
-
-- [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
-- [About custom domains and GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)
-- [Troubleshooting custom domains and GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages)
-
-For the apex domain `george-nowacek.com`, configure the apex records your DNS provider supports according to GitHub's current docs. Do not use wildcard DNS records.
-
-For `www.george-nowacek.com`, configure the `www` subdomain according to GitHub's current docs, typically as the canonical `www` record pointing to the GitHub Pages host GitHub specifies. Once both apex and `www` are configured correctly, GitHub Pages can redirect between the two forms based on the custom domain selected in repository settings.
-
-GitHub also supports domain verification for additional protection. If available for the account, verify `george-nowacek.com` in GitHub account or organization settings before relying on the domain for a public professional site.
-
 ## Notes
 
-The app uses a post-build step to create static files for `/now/` and `404.html`, so direct navigation works on GitHub Pages without assuming a repository subpath. The Vite base is `/`, which is appropriate for the custom apex domain.
+The app uses a post-build step to create static files for `/now/` and `404.html`, so direct navigation works on GitHub Pages. The Vite base is `/george-nowacek.com/`, which is required because this is deployed as a GitHub Pages project site rather than a custom-domain apex site.

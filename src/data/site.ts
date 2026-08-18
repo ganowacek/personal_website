@@ -1,11 +1,15 @@
+const assetBase = import.meta.env.BASE_URL;
+export const withBasePath = (path: string) => `${assetBase}${path.replace(/^\/+/, "")}`;
+
 export const siteConfig = {
   name: "George A Nowacek II",
   shortName: "George A Nowacek II",
-  domain: "https://george-nowacek.com",
+  domain: "https://ganowacek.github.io/george-nowacek.com",
   email: "",
   github: "",
   linkedin: "",
-  cv: "/George_Nowacek_CV.pdf",
+  cv: withBasePath("George_Nowacek_CV.pdf"),
+  headshot: withBasePath("headshot.jpg"),
   cvAvailable: true,
   title: "George A Nowacek II | Statistics, Research & Pure Mathematics",
   description:
