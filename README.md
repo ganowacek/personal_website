@@ -2,11 +2,11 @@
 
 Personal website for George A Nowacek II, built as a fast static React site for GitHub Pages.
 
-Published site:
+Current status:
 
-```text
-https://ganowacek.github.io/george-nowacek.com/
-```
+- The repository is private while I review and revise the site.
+- GitHub Pages is currently disabled, so there is no public URL yet.
+- The site content should follow from `public/George_Nowacek_CV.pdf`.
 
 ## Local Development
 
@@ -20,6 +20,12 @@ Start the development server:
 
 ```bash
 npm run dev
+```
+
+With the current GitHub Pages project-site base path, local preview opens at:
+
+```text
+http://127.0.0.1:5173/george-nowacek.com/
 ```
 
 Build the production site:
@@ -46,6 +52,8 @@ Most content is stored in small data files:
 - Education: `src/data/education.ts`
 - Site-wide settings, links, current focus, and `/now`: `src/data/site.ts`
 
+Use the CV as the source of truth for public content. Do not add biographical, research, teaching, publication, experience, or education details unless they are supported by the CV or intentionally added to it first.
+
 To add a publication, edit `src/data/publications.ts` and add an object with fields such as `title`, `authors`, `journal`, `year`, `doi`, `pubmed`, `pdf`, `citation`, and `status`.
 
 To add the CV, place the PDF at:
@@ -64,13 +72,13 @@ public/headshot.jpg
 
 Keep the same filename, or update the image path in `src/pages/HomePage.tsx`.
 
-Add real contact and social URLs in `src/data/site.ts`. Unknown links are intentionally blank so the site does not invent contact information.
+Contact and social URLs live in `src/data/site.ts`. Unknown links are intentionally blank so the site does not invent contact information.
 
 ## Deployment
 
 This repository includes a GitHub Actions workflow at `.github/workflows/pages.yml`.
 
-While the repository is private and the public site is paused, the workflow runs only when started manually from the Actions tab. When the site is ready to publish again, re-enable GitHub Pages and either run the workflow manually or add the `push` trigger back.
+While the repository is private and the public site is paused, the workflow runs only when started manually from the Actions tab. When the site is ready to publish again, make the repository public if needed, re-enable GitHub Pages, and either run the workflow manually or add the `push` trigger back.
 
 When run, the workflow:
 
