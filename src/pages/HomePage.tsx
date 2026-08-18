@@ -9,6 +9,7 @@ import {
   Microscope,
   Network,
 } from "lucide-react";
+import { ManimCanvas } from "../components/ManimCanvas";
 import { SectionHeader } from "../components/SectionHeader";
 import { education } from "../data/education";
 import { experience } from "../data/experience";
@@ -58,20 +59,17 @@ export function HomePage({ onNavigate }: HomePageProps) {
             />
           </figure>
         </div>
-        <aside className="hero-panel" aria-label="Current focus">
-          <div className="stat-visual" aria-hidden="true">
-            <span style={{ height: "36%" }} />
-            <span style={{ height: "62%" }} />
-            <span style={{ height: "48%" }} />
-            <span style={{ height: "78%" }} />
-            <span style={{ height: "55%" }} />
+        <aside className="hero-panel manim-panel" aria-label="Current focus">
+          <ManimCanvas />
+          <div className="manim-caption">
+            <p className="eyebrow">Now</p>
+            <h2>Currently</h2>
+            <ul>
+              {currentFocus.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
-          <h2>Currently</h2>
-          <ul>
-            {currentFocus.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
         </aside>
       </section>
 

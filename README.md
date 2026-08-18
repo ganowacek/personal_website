@@ -73,6 +73,10 @@ Keep the same filename, or update the image path in `src/pages/HomePage.tsx`.
 
 Contact and social URLs live in `src/data/site.ts`. Unknown links are intentionally blank so the site does not invent contact information.
 
+## Visual System
+
+The homepage uses a browser-native canvas scene inspired by Manim-style programmatic mathematical animation. Manim itself is not bundled into the GitHub Pages site; Manim-generated assets should be rendered outside the app and added to `public/` as static web media.
+
 ## Deployment
 
 This repository includes a GitHub Actions workflow at `.github/workflows/pages.yml`.
