@@ -275,7 +275,6 @@ input {
 .button.secondary,
 .palette,
 .research-card,
-.cv-panel,
 .contact-panel,
 .education-panel,
 .now-card {
@@ -338,7 +337,6 @@ input {
 }
 
 .section-header h2,
-.cv-panel h2,
 .contact-panel h2,
 .now-card h2 {
   margin: 0.25rem 0 0;
@@ -354,9 +352,9 @@ input {
 }
 
 .split-section,
-.cv-contact {
+.contact-section {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.54fr);
+  grid-template-columns: 1fr;
   gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: start;
 }
@@ -366,7 +364,6 @@ input {
 }
 
 .about-section > p,
-.cv-panel p,
 .contact-panel p {
   color: var(--muted);
 }
@@ -385,7 +382,6 @@ input {
 }
 
 .research-card,
-.cv-panel,
 .contact-panel,
 .education-panel,
 .now-card {
@@ -529,7 +525,6 @@ input {
 .teaching-list article,
 .timeline article,
 .education-panel,
-.cv-panel,
 .contact-panel,
 .now-card {
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
@@ -538,7 +533,6 @@ input {
 .research-card:hover,
 .publication:hover,
 .education-panel:hover,
-.cv-panel:hover,
 .now-card:hover {
   border-color: color-mix(in srgb, var(--blue) 45%, var(--line));
   box-shadow: 0 18px 42px rgba(7, 20, 38, 0.08);
@@ -601,33 +595,6 @@ input {
   margin-top: 0.45rem;
   color: var(--muted);
   line-height: 1.45;
-}
-
-.cv-contact {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: stretch;
-}
-
-.cv-header {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-}
-
-.cv-header svg {
-  color: var(--deep-blue);
-}
-
-.cv-frame {
-  display: block;
-  width: 100%;
-  min-height: min(78svh, 62rem);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
 }
 
 .contact-panel {
@@ -786,7 +753,7 @@ code {
 
   .hero,
   .split-section,
-  .cv-contact,
+  .contact-section,
   .research-grid,
   .now-grid {
     grid-template-columns: 1fr;
@@ -811,15 +778,9 @@ code {
     max-width: 12rem;
   }
 
-  .hero-actions .button,
-  .cv-header .button,
-  .cv-panel .button {
+  .hero-actions .button {
     width: 100%;
     justify-content: center;
-  }
-
-  .cv-header {
-    display: grid;
   }
 
   .hero h1,

@@ -24,7 +24,6 @@ export function Layout({ children, onNavigate }: LayoutProps) {
     ["Coursework", "#coursework"],
     ["Experience", "#experience"],
     ["Now", "/now"],
-    ["CV", "#cv"],
   ];
 
   return (
@@ -66,10 +65,7 @@ export function Layout({ children, onNavigate }: LayoutProps) {
           {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Network size={18} /></a> : null}
           {siteConfig.github ? <a href={siteConfig.github} target="_blank" rel="noreferrer" aria-label="GitHub"><ExternalLink size={18} /></a> : null}
           {siteConfig.email ? <a href={`mailto:${siteConfig.email}`} aria-label="Email"><Mail size={18} /></a> : null}
-          <a href="#cv" aria-label="CV" onClick={(event) => {
-            event.preventDefault();
-            onNavigate("#cv");
-          }}><FileText size={18} /></a>
+          {siteConfig.cvAvailable ? <a href={siteConfig.cv} download="George_Nowacek_CV.pdf" aria-label="Download CV"><FileText size={18} /></a> : null}
         </div>
       </footer>
     </>

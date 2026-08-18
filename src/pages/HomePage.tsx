@@ -2,7 +2,6 @@ import {
   ArrowRight,
   Download,
   ExternalLink,
-  FileText,
   GraduationCap,
   Mail,
   Microscope,
@@ -15,7 +14,6 @@ import { publications } from "../data/publications";
 import { researchEntries } from "../data/research";
 import { researchInterests, selectedTools, siteConfig } from "../data/site";
 import { teaching } from "../data/teaching";
-import { downloadCv } from "../lib/cv";
 
 type HomePageProps = {
   onNavigate: (target: string) => void;
@@ -38,15 +36,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <button className="button primary" type="button" onClick={() => onNavigate("#research")}>
               View My Work <ArrowRight aria-hidden="true" size={17} />
             </button>
-            <button
+            <a
               className="button secondary"
-              type="button"
-              onClick={() => onNavigate("#cv")}
-              disabled={!siteConfig.cvAvailable}
-              title="View CV"
+              href={siteConfig.cv}
+              download="George_Nowacek_CV.pdf"
+              aria-disabled={!siteConfig.cvAvailable}
+              title="Download CV"
             >
-              View CV <FileText aria-hidden="true" size={17} />
-            </button>
+              Download CV <Download aria-hidden="true" size={17} />
+            </a>
           </div>
           <div className="social-row" aria-label="Professional links">
             {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Network size={18} />LinkedIn</a> : null}
@@ -179,30 +177,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </aside>
       </section>
 
-      <section className="section cv-contact" id="cv">
-        <div className="cv-panel">
-          <div className="cv-header">
-            <div>
-              <FileText aria-hidden="true" size={28} />
-              <p className="eyebrow">CV</p>
-              <h2>Curriculum Vitae</h2>
-              <p>
-                I keep my current CV visible here, with a download available for reference.
-              </p>
-            </div>
-            <button className="button secondary" type="button" onClick={downloadCv} disabled={!siteConfig.cvAvailable}>
-              Download CV <Download size={16} />
-            </button>
-          </div>
-          {siteConfig.cvAvailable ? (
-            <iframe
-              className="cv-frame"
-              src={`${siteConfig.cv}#view=FitH`}
-              title="George A Nowacek II CV"
-            />
-          ) : null}
-        </div>
-        <div className="contact-panel" id="contact">
+      <section className="section contact-section" id="contact">
+        <div className="contact-panel">
           <p className="eyebrow">Contact</p>
           <h2>Let's connect.</h2>
           <p>I can be reached by email, LinkedIn, or GitHub.</p>
