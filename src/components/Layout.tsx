@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { siteConfig, withBasePath } from "../data/site";
 import { CommandPalette } from "./CommandPalette";
+import { SiteBackground } from "./SiteBackground";
 
 type LayoutProps = {
   children: ReactNode;
@@ -28,6 +29,7 @@ export function Layout({ children, onNavigate }: LayoutProps) {
 
   return (
     <>
+      <SiteBackground dark={dark} />
       <header className="site-nav">
         <a className="wordmark" href={withBasePath("")} onClick={(event) => {
           event.preventDefault();

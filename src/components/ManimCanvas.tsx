@@ -6,22 +6,29 @@ const points = Array.from({ length: 72 }, (_, index) => {
   return { x, y: 0.72 - 0.46 / (1 + Math.exp(-8 * (x - 0.48))) + wave };
 });
 
-const heatCells = Array.from({ length: 56 }, (_, index) => ({
-  x: index % 8,
-  y: Math.floor(index / 8),
-  value: ((index * 19) % 31) / 31,
-}));
-
-const bars = [0.18, 0.28, 0.42, 0.62, 0.78, 0.7, 0.54, 0.36, 0.24, 0.16];
+const walkPoints = (() => {
+  let x = 0;
+  let y = 0;
+  const raw = [{ x, y }];
+  for (let index = 1; index <= 60; index += 1) {
+    x += Math.sin(index * 12.9898) * 0.5 + Math.sin(index * 0.37) * 0.3;
+    y += Math.cos(index * 78.233) * 0.5 + Math.cos(index * 0.53) * 0.3;
+    raw.push({ x, y });
+  }
+  const xs = raw.map((point) => point.x);
+  const ys = raw.map((point) => point.y);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  return raw.map((point) => ({
+    x: (point.x - minX) / (maxX - minX || 1),
+    y: (point.y - minY) / (maxY - minY || 1),
+  }));
+})();
 
 function ease(value: number) {
   return value < 0.5 ? 4 * value * value * value : 1 - Math.pow(-2 * value + 2, 3) / 2;
-}
-
-function drawRoundRect(context: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
-  context.beginPath();
-  context.roundRect(x, y, width, height, radius);
-  context.fill();
 }
 
 export function ManimCanvas() {
@@ -107,33 +114,101 @@ export function ManimCanvas() {
       });
     }
 
-    function drawHistogram(time: number) {
-      const startX = width * 0.58;
-      const baseY = height * 0.84;
-      const barWidth = Math.max(7, width * 0.028);
-      bars.forEach((bar, index) => {
-        const heightPulse = bar * (0.86 + 0.14 * Math.sin(time * 0.002 + index * 0.65));
-        context.fillStyle = index > 5 ? "rgba(246, 200, 95, 0.62)" : "rgba(75, 156, 211, 0.5)";
-        drawRoundRect(context, startX + index * (barWidth + 5), baseY - heightPulse * 118, barWidth, heightPulse * 118, 4);
-      });
+    function drawGridTransform(centerX: number, centerY: number, extent: number, time: number) {
+      const angle = 0.22 * Math.sin(time * 0.00055);
+      const shear = 0.22 * Math.sin(time * 0.00035 + 1.1);
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      const m00 = cos + shear * sin;
+      const m01 = -sin + shear * cos;
+      const m10 = sin;
+      const m11 = cos;
+
+      function transform(x: number, y: number) {
+        return { x: m00 * x + m01 * y, y: m10 * x + m11 * y };
+      }
+
+      const steps = 4;
+      const cell = extent / steps;
+
+      context.save();
+      context.translate(centerX, centerY);
+
+      context.strokeStyle = "rgba(247, 245, 239, 0.12)";
+      context.lineWidth = 1;
+      for (let index = -steps; index <= steps; index += 1) {
+        context.beginPath();
+        context.moveTo(index * cell, -extent);
+        context.lineTo(index * cell, extent);
+        context.moveTo(-extent, index * cell);
+        context.lineTo(extent, index * cell);
+        context.stroke();
+      }
+
+      context.strokeStyle = "rgba(143, 188, 230, 0.55)";
+      context.lineWidth = 1.3;
+      for (let index = -steps; index <= steps; index += 1) {
+        const vTop = transform(index * cell, -extent);
+        const vBottom = transform(index * cell, extent);
+        const hLeft = transform(-extent, index * cell);
+        const hRight = transform(extent, index * cell);
+        context.beginPath();
+        context.moveTo(vTop.x, -vTop.y);
+        context.lineTo(vBottom.x, -vBottom.y);
+        context.moveTo(hLeft.x, -hLeft.y);
+        context.lineTo(hRight.x, -hRight.y);
+        context.stroke();
+      }
+
+      context.strokeStyle = "#f6c85f";
+      context.lineWidth = 2.2;
+      const e1 = transform(extent * 0.92, 0);
+      const e2 = transform(0, extent * 0.92);
+      context.beginPath();
+      context.moveTo(0, 0);
+      context.lineTo(e1.x, -e1.y);
+      context.stroke();
+      context.beginPath();
+      context.moveTo(0, 0);
+      context.lineTo(e2.x, -e2.y);
+      context.stroke();
+
+      context.restore();
+
+      context.font = "600 13px Inter, sans-serif";
+      context.fillStyle = "rgba(143, 188, 230, 0.86)";
+      context.fillText("T(v) = Av", centerX - extent, centerY - extent - 10);
     }
 
-    function drawHeatmap(time: number) {
-      const size = Math.min(width, height) * 0.042;
-      const startX = width * 0.09;
-      const startY = height * 0.58;
-      heatCells.forEach((cell) => {
-        const opacity = 0.08 + Math.abs(Math.sin(time * 0.0015 + cell.value * 5)) * 0.58;
-        context.fillStyle = `rgba(75, 156, 211, ${opacity})`;
-        drawRoundRect(context, startX + cell.x * (size + 3), startY + cell.y * (size + 3), size, size, 3);
-      });
+    function drawRandomWalk(startX: number, baseY: number, spanX: number, spanY: number, progress: number) {
+      const count = Math.max(2, Math.floor(walkPoints.length * progress));
+      context.lineWidth = 2;
+      for (let index = 1; index < count; index += 1) {
+        const prev = walkPoints[index - 1];
+        const curr = walkPoints[index];
+        const alpha = 0.15 + 0.55 * (index / walkPoints.length);
+        context.strokeStyle = `rgba(75, 156, 211, ${alpha})`;
+        context.beginPath();
+        context.moveTo(startX + prev.x * spanX, baseY - prev.y * spanY);
+        context.lineTo(startX + curr.x * spanX, baseY - curr.y * spanY);
+        context.stroke();
+      }
+
+      const head = walkPoints[count - 1];
+      context.fillStyle = "#f6c85f";
+      context.beginPath();
+      context.arc(startX + head.x * spanX, baseY - head.y * spanY, 3.4, 0, Math.PI * 2);
+      context.fill();
+
+      context.font = "600 13px Inter, sans-serif";
+      context.fillStyle = "rgba(246, 200, 95, 0.8)";
+      context.fillText("X_t", startX, baseY + 16);
     }
 
     function drawLabels(time: number) {
       context.font = "600 15px Inter, sans-serif";
       context.fillStyle = "rgba(247, 245, 239, 0.8)";
       context.fillText("E[Y | X]", width * 0.09, height * 0.2 + Math.sin(time * 0.002) * 4);
-      context.fillText("theta -> model -> insight", width * 0.5, height * 0.24 + Math.cos(time * 0.0018) * 4);
       context.fillStyle = "rgba(246, 200, 95, 0.86)";
       context.fillText("log L(theta)", width * 0.62, height * 0.52);
     }
@@ -158,11 +233,19 @@ export function ManimCanvas() {
       drawAxes(originX, originY, progress);
       drawPoints(originX, originY, scaleX, scaleY, time);
       drawCurve(originX, originY, scaleX, scaleY, progress);
-      drawHeatmap(time);
-      drawHistogram(time);
+      drawGridTransform(width * 0.19, height * 0.7, Math.min(width, height) * 0.11, time);
+      drawRandomWalk(width * 0.58, height * 0.84, width * 0.32, 118, progress);
       drawLabels(time);
 
-      if (!motionQuery.matches) {
+      if (!motionQuery.matches && !document.hidden) {
+        animationFrame = window.requestAnimationFrame(draw);
+      }
+    }
+
+    function onVisibilityChange() {
+      if (document.hidden) {
+        window.cancelAnimationFrame(animationFrame);
+      } else if (!motionQuery.matches) {
         animationFrame = window.requestAnimationFrame(draw);
       }
     }
@@ -170,11 +253,13 @@ export function ManimCanvas() {
     resize();
     draw(0);
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onVisibilityChange);
     if (!motionQuery.matches) animationFrame = window.requestAnimationFrame(draw);
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 
