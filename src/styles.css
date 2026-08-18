@@ -276,7 +276,6 @@ input {
 .palette,
 .hero-panel,
 .research-card,
-.coursework-card,
 .cv-panel,
 .contact-panel,
 .headshot-card,
@@ -436,7 +435,6 @@ input {
 }
 
 .research-grid,
-.coursework-grid,
 .now-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -444,7 +442,6 @@ input {
 }
 
 .research-card,
-.coursework-card,
 .cv-panel,
 .contact-panel,
 .education-panel,
@@ -455,7 +452,6 @@ input {
 }
 
 .research-card h3,
-.coursework-card h3,
 .timeline h3,
 .teaching-list h3,
 .education-panel h3,
@@ -466,7 +462,6 @@ input {
 }
 
 .research-card p,
-.coursework-card p,
 .timeline p,
 .teaching-list p,
 .education-panel p,
@@ -541,20 +536,6 @@ input {
     color-mix(in srgb, var(--surface-soft) 48%, transparent);
 }
 
-.coursework-grid {
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  align-items: start;
-}
-
-.coursework-card {
-  display: grid;
-  gap: 0.85rem;
-}
-
-.coursework-card:nth-child(2) {
-  margin-top: 2.2rem;
-}
-
 .course-list {
   display: flex;
   flex-wrap: wrap;
@@ -564,10 +545,19 @@ input {
   list-style: none;
 }
 
+.coursework-board {
+  max-width: 70rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+  background: color-mix(in srgb, var(--surface) 91%, var(--blue));
+  box-shadow: 0 14px 42px rgba(7, 20, 38, 0.055);
+}
+
 .course-list li {
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 0.34rem 0.68rem;
+  padding: 0.38rem 0.72rem;
   background: color-mix(in srgb, var(--surface) 76%, transparent);
   color: var(--muted);
   font-size: 0.86rem;
@@ -592,7 +582,6 @@ input {
 }
 
 .research-card,
-.coursework-card,
 .publication,
 .teaching-list article,
 .timeline article,
@@ -604,7 +593,6 @@ input {
 }
 
 .research-card:hover,
-.coursework-card:hover,
 .publication:hover,
 .education-panel:hover,
 .cv-panel:hover,
@@ -858,7 +846,6 @@ code {
   .split-section,
   .cv-contact,
   .research-grid,
-  .coursework-grid,
   .now-grid {
     grid-template-columns: 1fr;
   }
@@ -869,10 +856,6 @@ code {
 
   .education-panel {
     position: static;
-  }
-
-  .coursework-card:nth-child(2) {
-    margin-top: 0;
   }
 }
 

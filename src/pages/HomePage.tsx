@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  BookOpen,
   Download,
   ExternalLink,
   FileText,
@@ -24,6 +23,8 @@ type HomePageProps = {
 };
 
 export function HomePage({ onNavigate }: HomePageProps) {
+  const coursework = education.flatMap((item) => item.coursework ?? []);
+
   return (
     <main>
       <section className="hero">
@@ -69,9 +70,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       <section className="section about-grid" id="about">
         <div>
-          <SectionHeader eyebrow="About" title="Quantitative work, grounded in my CV.">
-            My CV brings together statistical science, mathematics, global health data science,
-            medical humanities, research, teaching, and professional experience.
+          <SectionHeader eyebrow="About" title="Statistics, mathematics, and research work.">
+            I work across statistical science, mathematics, global health data science, medical
+            humanities, research, teaching, and operations.
           </SectionHeader>
           <p>
             I have supported global maternal and perinatal health research at the UNC School of
@@ -90,8 +91,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       <section className="section" id="research">
         <SectionHeader eyebrow="Research" title="Maternal health, medical imaging, and reproducible documentation.">
-          My research experience includes global maternal and perinatal health, medical imaging,
-          machine learning, systematic screening, clinical study coordination, and literature review.
+          I bring statistical and mathematical training to research settings that need careful
+          data work, literature review, and reproducible documentation.
         </SectionHeader>
         <div className="research-grid">
           {researchEntries.map((entry) => (
@@ -109,8 +110,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section publication-band">
-        <SectionHeader eyebrow="Publications" title="Published work listed on my CV.">
-          I list publication records here only when they appear on my CV.
+        <SectionHeader eyebrow="Publications" title="Published work.">
+          I include publication records here when they are ready to share publicly.
         </SectionHeader>
         <div className="stack">
           {publications.map((publication) => (
@@ -131,8 +132,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section teaching-section" id="teaching">
-        <SectionHeader eyebrow="Teaching" title="Teaching roles listed on my CV.">
-          My CV lists teaching roles at Duke University and UNC-Chapel Hill.
+        <SectionHeader eyebrow="Teaching" title="Teaching in statistics and medical humanities.">
+          I have taught in coding lab, data science, seminar, and medical humanities settings.
         </SectionHeader>
         <div className="teaching-list">
           {teaching.map((item) => (
@@ -151,29 +152,19 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       <section className="section coursework-section" id="coursework">
-        <SectionHeader eyebrow="Coursework" title="The classes shaping my quantitative toolkit.">
-          I use coursework as a useful map of the mathematical, statistical, computational, and
-          scientific training listed on my CV.
+        <SectionHeader eyebrow="Coursework" title="Coursework.">
+          I use these courses as a concise map of my mathematical, statistical, computational, and
+          scientific training.
         </SectionHeader>
-        <div className="coursework-grid">
-          {education.filter((item) => item.coursework?.length).map((item) => (
-            <article className="coursework-card" key={`${item.institution}-coursework`}>
-              <div className="card-kicker"><BookOpen size={16} />{item.institution}</div>
-              <h3>{item.degree}</h3>
-              {item.dates ? <p className="meta">{item.dates}</p> : null}
-              <ul className="course-list">
-                {item.coursework?.map((course) => <li key={course}>{course}</li>)}
-              </ul>
-            </article>
-          ))}
-        </div>
+        <ul className="course-list coursework-board" aria-label="Coursework">
+          {coursework.map((course) => <li key={course}>{course}</li>)}
+        </ul>
       </section>
 
       <section className="section split-section" id="experience">
         <div>
-          <SectionHeader eyebrow="Experience" title="A focused timeline from my CV.">
-            I highlight selected research, teaching, fellowship, employment, and education entries
-            that appear on my CV.
+          <SectionHeader eyebrow="Experience" title="A focused timeline.">
+            I highlight selected research, teaching, fellowship, employment, and education entries.
           </SectionHeader>
           <div className="timeline">
             {experience.map((item) => (
@@ -229,7 +220,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="contact-panel" id="contact">
           <p className="eyebrow">Contact</p>
           <h2>Let's connect.</h2>
-          <p>My CV lists email and LinkedIn as my contact points.</p>
+          <p>I can be reached by email or LinkedIn.</p>
           <div className="contact-links">
             {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={17} />Email</a> : null}
             {siteConfig.linkedin ? <a href={siteConfig.linkedin}><Network size={17} />LinkedIn</a> : null}
