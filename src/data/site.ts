@@ -9,7 +9,6 @@ export const siteConfig = {
   linkedin: "https://www.linkedin.com/in/george-a-nowacek-ii/",
   cv: withBasePath("George_Nowacek_CV.pdf"),
   headshot: withBasePath("headshot.jpg"),
-  diagram: withBasePath("og-card.png"),
   cvAvailable: true,
   title: "George A Nowacek II | Statistics, Research & Pure Mathematics",
   description:
