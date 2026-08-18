@@ -56,7 +56,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
         </div>
         <figure className="hero-portrait">
-          <img src={siteConfig.headshot} alt="Professional headshot of me, George A Nowacek II" />
+          <img src={siteConfig.headshot} alt="Professional headshot of me, George A. Nowacek II" />
         </figure>
       </section>
 

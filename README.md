@@ -1,6 +1,6 @@
-# George A Nowacek II Personal Website
+# George A. Nowacek II Personal Website
 
-Personal website for George A Nowacek II, built as a fast static React site for GitHub Pages.
+Personal website for George A. Nowacek II, built as a fast static React site for GitHub Pages.
 
 Current status:
 
