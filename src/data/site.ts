@@ -6,7 +6,6 @@ export const siteConfig = {
   shortName: "George A Nowacek II",
   domain: "https://ganowacek.github.io/george-nowacek.com",
   email: "geanowacek@gmail.com",
-  github: "",
   linkedin: "https://www.linkedin.com/in/george-a-nowacek-ii/",
   cv: withBasePath("George_Nowacek_CV.pdf"),
   headshot: withBasePath("headshot.jpg"),

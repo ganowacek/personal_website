@@ -45,7 +45,6 @@ npm run preview
 Most content is stored in small data files:
 
 - Research: `src/data/research.ts`
-- Projects: `src/data/projects.ts`
 - Publications: `src/data/publications.ts`
 - Teaching: `src/data/teaching.ts`
 - Experience: `src/data/experience.ts`

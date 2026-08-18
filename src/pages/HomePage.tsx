@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Code2,
   Download,
   ExternalLink,
   FileText,
@@ -12,9 +11,8 @@ import {
 import { SectionHeader } from "../components/SectionHeader";
 import { education } from "../data/education";
 import { experience } from "../data/experience";
-import { projects } from "../data/projects";
 import { publications } from "../data/publications";
-import { researchProjects } from "../data/research";
+import { researchEntries } from "../data/research";
 import { currentFocus, researchInterests, selectedTools, siteConfig } from "../data/site";
 import { teaching } from "../data/teaching";
 import { downloadCv, openCv } from "../lib/cv";
@@ -49,7 +47,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </button>
           </div>
           <div className="social-row" aria-label="Professional links">
-            {siteConfig.github ? <a href={siteConfig.github} target="_blank" rel="noreferrer"><Code2 size={18} />GitHub</a> : null}
             {siteConfig.linkedin ? <a href={siteConfig.linkedin} target="_blank" rel="noreferrer"><Network size={18} />LinkedIn</a> : null}
             {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={18} />Email</a> : null}
           </div>
@@ -104,14 +101,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
           machine learning, systematic screening, clinical study coordination, and literature review.
         </SectionHeader>
         <div className="research-grid">
-          {researchProjects.map((project) => (
-            <article className="research-card" key={project.title}>
-              <div className="card-kicker"><Microscope size={16} />{project.institution}</div>
-              <h3>{project.title}</h3>
-              {project.group || project.dates ? <p className="meta">{[project.group, project.dates].filter(Boolean).join(" · ")}</p> : null}
-              <p>{project.description}</p>
+          {researchEntries.map((entry) => (
+            <article className="research-card" key={entry.title}>
+              <div className="card-kicker"><Microscope size={16} />{entry.institution}</div>
+              <h3>{entry.title}</h3>
+              {entry.group || entry.dates ? <p className="meta">{[entry.group, entry.dates].filter(Boolean).join(" · ")}</p> : null}
+              <p>{entry.description}</p>
               <div className="tag-row">
-                {project.methods.slice(0, 6).map((method) => <span key={method}>{method}</span>)}
+                {entry.methods.slice(0, 6).map((method) => <span key={method}>{method}</span>)}
               </div>
             </article>
           ))}
@@ -129,35 +126,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <h3>{publication.title}</h3>
               <p>{publication.citation}</p>
               {publication.doi ? (
-                <div className="project-links">
+                <div className="inline-links">
                   <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noreferrer">
                     DOI <ExternalLink size={15} />
                   </a>
-                </div>
-              ) : null}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section" id="projects">
-        <SectionHeader eyebrow="Selected Work" title="Concrete projects and outputs from my CV.">
-          I keep this section limited to research, teaching, and documentation work that my CV
-          explicitly lists.
-        </SectionHeader>
-        <div className="project-grid">
-          {projects.map((project) => (
-            <article className={project.featured ? "project-card featured" : "project-card"} key={project.title}>
-              <p className="meta">{project.category}</p>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="tag-row">
-                {project.tools.map((tool) => <span key={tool}>{tool}</span>)}
-              </div>
-              {project.github || project.demo ? (
-                <div className="project-links">
-                  {project.github ? <a href={project.github}>Repository</a> : null}
-                  {project.demo ? <a href={project.demo}>Demo</a> : null}
                 </div>
               ) : null}
             </article>
@@ -239,7 +211,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="contact-links">
             {siteConfig.email ? <a href={`mailto:${siteConfig.email}`}><Mail size={17} />Email</a> : null}
             {siteConfig.linkedin ? <a href={siteConfig.linkedin}><Network size={17} />LinkedIn</a> : null}
-            {siteConfig.github ? <a href={siteConfig.github}><Code2 size={17} />GitHub</a> : null}
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { Code2, GraduationCap, Mail, Search, X } from "lucide-react";
+import { GraduationCap, Mail, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { siteConfig } from "../data/site";
 
@@ -13,12 +13,10 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
   const commands = [
     { label: "About", target: "#about", icon: GraduationCap },
     { label: "Research", target: "#research", icon: Search },
-    { label: "Projects", target: "#projects", icon: Search },
     { label: "Teaching", target: "#teaching", icon: GraduationCap },
     { label: "Experience", target: "#experience", icon: Search },
     { label: "Now", target: "/now", icon: Search },
     { label: "Contact", target: "#contact", icon: Mail },
-    ...(siteConfig.github ? [{ label: "GitHub", target: siteConfig.github, icon: Code2 }] : []),
   ];
 
   const filtered = useMemo(() => {

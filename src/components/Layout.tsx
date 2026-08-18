@@ -1,4 +1,4 @@
-import { Code2, FileText, Mail, Moon, Network, Sun } from "lucide-react";
+import { FileText, Mail, Moon, Network, Sun } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { siteConfig, withBasePath } from "../data/site";
@@ -19,12 +19,10 @@ export function Layout({ children, onNavigate }: LayoutProps) {
   const nav = [
     ["About", "#about"],
     ["Research", "#research"],
-    ["Projects", "#projects"],
     ["Teaching", "#teaching"],
     ["Experience", "#experience"],
     ["Now", "/now"],
     ["CV", "#cv"],
-    ...(siteConfig.github ? [["GitHub", siteConfig.github]] : []),
   ];
 
   return (
@@ -62,7 +60,6 @@ export function Layout({ children, onNavigate }: LayoutProps) {
           <p>© {new Date().getFullYear()} {siteConfig.shortName}. Built with React · Hosted on GitHub.</p>
         </div>
         <div className="footer-links">
-          {siteConfig.github ? <a href={siteConfig.github} aria-label="GitHub"><Code2 size={18} /></a> : null}
           {siteConfig.linkedin ? <a href={siteConfig.linkedin} aria-label="LinkedIn"><Network size={18} /></a> : null}
           {siteConfig.email ? <a href={`mailto:${siteConfig.email}`} aria-label="Email"><Mail size={18} /></a> : null}
           <a href="#cv" aria-label="CV" onClick={(event) => {

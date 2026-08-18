@@ -3,7 +3,7 @@ export type ResearchLink = {
   href: string;
 };
 
-export type ResearchProject = {
+export type ResearchEntry = {
   title: string;
   institution: string;
   group?: string;
@@ -19,7 +19,7 @@ export type ResearchProject = {
   links?: ResearchLink[];
 };
 
-export const researchProjects: ResearchProject[] = [
+export const researchEntries: ResearchEntry[] = [
   {
     title: "Global Maternal and Perinatal Health Research",
     institution: "UNC School of Medicine",

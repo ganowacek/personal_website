@@ -15,7 +15,7 @@ export function NowPage() {
         <p className="eyebrow">Now</p>
         <h1>What I am focused on now.</h1>
         <p>
-          I use this page as a small, current snapshot of study, research, projects, and
+          I use this page as a small, current snapshot of study, research, teaching, and
           intellectual threads.
         </p>
         <small>{nowContent.updated}</small>
