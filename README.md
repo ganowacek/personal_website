@@ -49,7 +49,7 @@ Most content is stored in small data files:
 - Teaching: `src/data/teaching.ts`
 - Experience: `src/data/experience.ts`
 - Education: `src/data/education.ts`
-- Site-wide settings, links, current focus, and `/now`: `src/data/site.ts`
+- Site-wide settings and links: `src/data/site.ts`
 
 Use the CV as the source of truth for public content. Do not add biographical, research, teaching, publication, experience, or education details unless they are supported by the CV or intentionally added to it first.
 
@@ -105,4 +105,4 @@ After pushing the repository to GitHub:
 
 ## Notes
 
-The app uses a post-build step to create static files for `/now/` and `404.html`, so direct navigation works on GitHub Pages. The Vite base is `/george-nowacek.com/`, which is required because this is deployed as a GitHub Pages project site rather than a custom-domain apex site.
+The app uses a post-build step to create `404.html`, so direct navigation works on GitHub Pages. The Vite base is `/george-nowacek.com/`, which is required because this is deployed as a GitHub Pages project site rather than a custom-domain apex site.

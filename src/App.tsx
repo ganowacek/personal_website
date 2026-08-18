@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Layout } from "./components/Layout";
 import { HomePage } from "./pages/HomePage";
 import { NotFound } from "./pages/NotFound";
-import { NowPage } from "./pages/NowPage";
 
 const basePath = import.meta.env.BASE_URL;
 
@@ -70,7 +69,6 @@ export default function App() {
 
   const page = useMemo(() => {
     if (path === "" || path === "/") return <HomePage onNavigate={navigateTo} />;
-    if (path === "/now") return <NowPage />;
     return <NotFound />;
   }, [path]);
 

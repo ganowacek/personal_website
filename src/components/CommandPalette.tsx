@@ -15,7 +15,6 @@ export function CommandPalette({ onNavigate }: CommandPaletteProps) {
     { label: "Teaching", target: "#teaching", icon: GraduationCap },
     { label: "Coursework", target: "#coursework", icon: BookOpen },
     { label: "Experience", target: "#experience", icon: Search },
-    { label: "Now", target: "/now", icon: Search },
     { label: "Contact", target: "#contact", icon: Mail },
   ];
 

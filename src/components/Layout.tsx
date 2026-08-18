@@ -23,7 +23,6 @@ export function Layout({ children, onNavigate }: LayoutProps) {
     ["Teaching", "#teaching"],
     ["Coursework", "#coursework"],
     ["Experience", "#experience"],
-    ["Now", "/now"],
   ];
 
   return (

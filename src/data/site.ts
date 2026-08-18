@@ -16,13 +16,6 @@ export const siteConfig = {
     "I am pursuing an M.S. in Statistical Science at Duke University, with research and teaching experience across global health data science, maternal health, statistical computing, and medical humanities.",
 };
 
-export const currentFocus = [
-  "I'm pursuing an M.S. in Statistical Science at Duke University",
-  "I'm serving as a Graduate TA for global health data science",
-  "I'm working with R, data visualization, and reproducible research",
-  "I'm continuing professional bookkeeping work with Southern Village Club",
-];
-
 export const researchInterests = [
   "Biostatistics",
   "Global Maternal Health",
@@ -46,22 +39,3 @@ export const selectedTools = [
   "QuickBooks Payroll",
   "Canvas LMS",
 ];
-
-export const nowContent = {
-  updated: "Current as of August 2026.",
-  studying: [
-    "I'm pursuing an M.S. in Statistical Science at Duke University, expected May 2028",
-    "My coursework includes Theory of Statistical Inference, Statistical Programming, Predictive Modeling, SQL, Real Analysis, Stochastic Modeling, and Optimization in ML",
-  ],
-  research: [
-    "I supported global maternal and perinatal health research with UNC School of Medicine's Global Women's Health group",
-    "I developed dataset documentation for 1,100+ variables and 12,000+ participant encounters in the LABOR Study",
-  ],
-  building: [
-    "I lead coding lab sections for STA 198L: Introduction to Global Health Data Science",
-    "I manage payroll, invoices, facility charges, and account reconciliation as Bookkeeper for Southern Village Club",
-  ],
-  reading: [
-    "Through the Fons Vitae Medical Humanities Fellowship, I study medicine, healing, and human flourishing through theology, ethics, and literature",
-  ],
-};
