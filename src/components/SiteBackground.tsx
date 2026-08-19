@@ -14,32 +14,56 @@ const handwrittenAlpha = 0.105;
 
 const mathNotes = [
   { x: 0.06, y: 0.15, text: "∀ε>0 ∃δ>0", phase: 0.1, rotate: -0.05 },
+  { x: 0.16, y: 0.08, text: "T: V → W", phase: 0.35, rotate: 0.04 },
   { x: 0.28, y: 0.12, text: "lim a_n = L", phase: 0.7, rotate: 0.03 },
+  { x: 0.39, y: 0.08, text: "N ⊲ G", phase: 0.95, rotate: -0.03 },
   { x: 0.51, y: 0.14, text: "f: X → Y", phase: 1.2, rotate: -0.02 },
+  { x: 0.61, y: 0.08, text: "∀x∈X", phase: 1.45, rotate: 0.05 },
   { x: 0.78, y: 0.13, text: "π₁(X,x₀)", phase: 1.8, rotate: 0.04 },
+  { x: 0.91, y: 0.09, text: "im f", phase: 2.05, rotate: -0.04 },
   { x: 0.13, y: 0.29, text: "U ∩ V", phase: 2.3, rotate: 0.02 },
+  { x: 0.24, y: 0.25, text: "A ∪ B", phase: 2.55, rotate: -0.05 },
   { x: 0.36, y: 0.31, text: "ker φ ⊲ G", phase: 2.9, rotate: -0.04 },
+  { x: 0.48, y: 0.26, text: "dim V = n", phase: 3.15, rotate: 0.03 },
   { x: 0.63, y: 0.29, text: "A ⊆ X", phase: 3.4, rotate: 0.05 },
+  { x: 0.74, y: 0.24, text: "∀g∈G", phase: 3.65, rotate: -0.02 },
   { x: 0.86, y: 0.32, text: "sup S", phase: 4.0, rotate: -0.03 },
+  { x: 0.95, y: 0.27, text: "id_X", phase: 4.25, rotate: 0.04 },
   { x: 0.08, y: 0.46, text: "cl(A)", phase: 4.6, rotate: 0.04 },
+  { x: 0.21, y: 0.42, text: "open cover", phase: 4.85, rotate: -0.04 },
+  { x: 0.34, y: 0.43, text: "a | b", phase: 4.95, rotate: 0.02 },
   { x: 0.47, y: 0.46, text: "∂² = 0", phase: 5.1, rotate: -0.02 },
+  { x: 0.58, y: 0.41, text: "x ≡ y mod n", phase: 5.45, rotate: 0.04 },
   { x: 0.72, y: 0.49, text: "H_n(X)", phase: 5.7, rotate: 0.03 },
+  { x: 0.84, y: 0.46, text: "φ∘ψ", phase: 5.95, rotate: -0.05 },
   { x: 0.19, y: 0.62, text: "compact ⇒ closed", phase: 6.2, rotate: -0.04 },
+  { x: 0.39, y: 0.64, text: "∀U∋p", phase: 6.45, rotate: 0.03 },
   { x: 0.56, y: 0.64, text: "∫_γ f dz = 0", phase: 6.8, rotate: 0.02 },
+  { x: 0.69, y: 0.61, text: "Spec R", phase: 7.05, rotate: -0.02 },
   { x: 0.82, y: 0.66, text: "χ(S²)=2", phase: 7.3, rotate: -0.05 },
+  { x: 0.94, y: 0.61, text: "Aut(G)", phase: 7.55, rotate: 0.05 },
   { x: 0.09, y: 0.82, text: "Z/nZ", phase: 7.9, rotate: 0.04 },
+  { x: 0.2, y: 0.77, text: "Cauchy", phase: 8.15, rotate: -0.03 },
   { x: 0.34, y: 0.83, text: "Hom(A,B)", phase: 8.4, rotate: -0.03 },
+  { x: 0.48, y: 0.78, text: "∀α∈I", phase: 8.65, rotate: 0.04 },
   { x: 0.63, y: 0.82, text: "rank T", phase: 9.0, rotate: 0.03 },
+  { x: 0.75, y: 0.78, text: "Gal(L/K)", phase: 9.25, rotate: -0.05 },
   { x: 0.87, y: 0.84, text: "∇×∇f=0", phase: 9.5, rotate: -0.02 },
+  { x: 0.96, y: 0.79, text: "QED", phase: 9.75, rotate: 0.04 },
 ];
 
 const proofFragments = [
+  { x: 0.05, y: 0.37, lines: ["Given ε.", "Choose δ.", "|x-a|<δ."], phase: 0.15 },
   { x: 0.04, y: 0.55, lines: ["Lemma.", "Assume X compact.", "Take {U_i}."], phase: 0.4 },
+  { x: 0.24, y: 0.72, lines: ["Suppose.", "U,V open.", "Then U∩V open."], phase: 1.3 },
+  { x: 0.49, y: 0.33, lines: ["Let G act on X.", "stab(x) ≤ G."], phase: 1.7 },
   { x: 0.66, y: 0.39, lines: ["Claim.", "φ(ab)=φ(a)φ(b)", "ker φ normal."], phase: 2.2 },
   { x: 0.34, y: 0.57, lines: ["Proof.", "Let p ∈ cl(A).", "Every nbhd meets A."], phase: 3.8 },
+  { x: 0.73, y: 0.74, lines: ["If f continuous,", "preimage(open)", "is open."], phase: 4.6 },
+  { x: 0.88, y: 0.52, lines: ["Basis β.", "span β = V.", "β independent."], phase: 5.4 },
 ];
 
-const scribbleBands = Array.from({ length: 11 }, (_, index) => ({
+const scribbleBands = Array.from({ length: 20 }, (_, index) => ({
   x: ((index * 29 + 8) % 100) / 100,
   y: ((index * 47 + 14) % 100) / 100,
   width: 0.12 + ((index * 7) % 8) / 100,
@@ -55,6 +79,12 @@ const notebookDiagrams = [
   { type: "lattice", x: 0.77, y: 0.63, scale: 0.84, phase: 7.4 },
   { type: "numberLine", x: 0.32, y: 0.72, scale: 0.78, phase: 8.8 },
   { type: "torus", x: 0.58, y: 0.76, scale: 0.76, phase: 10.2 },
+  { type: "triangle", x: 0.08, y: 0.72, scale: 0.7, phase: 11.1 },
+  { type: "venn", x: 0.53, y: 0.55, scale: 0.66, phase: 12.4 },
+  { type: "square", x: 0.92, y: 0.75, scale: 0.7, phase: 13.7 },
+  { type: "cover", x: 0.31, y: 0.36, scale: 0.68, phase: 14.6 },
+  { type: "lattice", x: 0.11, y: 0.88, scale: 0.72, phase: 15.8 },
+  { type: "numberLine", x: 0.69, y: 0.9, scale: 0.72, phase: 16.9 },
 ];
 
 type SiteBackgroundProps = {
@@ -91,11 +121,11 @@ export function SiteBackground({ dark }: SiteBackgroundProps) {
       context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     }
 
-    function drawGraphPaper(time: number, lineColor: string, accentColor: string) {
+    function drawGraphPaper(lineColor: string, accentColor: string) {
       const minor = 36;
       const major = minor * 4;
-      const driftX = (time * 0.006) % minor;
-      const driftY = (time * 0.003) % minor;
+      const driftX = 0;
+      const driftY = 0;
 
       context.lineWidth = 1;
       context.strokeStyle = lineColor;
@@ -430,7 +460,7 @@ export function SiteBackground({ dark }: SiteBackgroundProps) {
         : `rgba(247, 245, 239, ${handwrittenAlpha})`;
 
       context.clearRect(0, 0, width, height);
-      drawGraphPaper(time, graphLine, graphAccent);
+      drawGraphPaper(graphLine, graphAccent);
       drawNotebookScribbles(time, notebookInk);
 
       dots.forEach((dot) => {

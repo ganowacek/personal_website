@@ -179,16 +179,18 @@ input {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.82fr);
-  gap: clamp(1.25rem, 3vw, 3rem);
+  width: min(100%, 92rem);
+  grid-template-columns: minmax(0, 0.95fr) minmax(22rem, 0.7fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
   align-items: center;
   min-height: calc(100svh - 4rem);
-  padding: clamp(4rem, 10vw, 8rem) clamp(1.1rem, 5vw, 5rem) 3rem;
+  margin: 0 auto;
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.1rem, 3vw, 3rem) 3rem;
 }
 
 .hero-copy {
   width: 100%;
-  max-width: 56rem;
+  max-width: 50rem;
   min-width: 0;
   animation: rise-in 700ms ease both;
 }
@@ -214,7 +216,7 @@ input {
 }
 
 .hero-lede {
-  max-width: 45rem;
+  max-width: 41rem;
   color: var(--muted);
   font-size: clamp(1.1rem, 2vw, 1.45rem);
 }
@@ -306,9 +308,9 @@ input {
 .hero-portrait {
   position: relative;
   margin: 0;
-  justify-self: start;
+  justify-self: end;
   width: 100%;
-  max-width: min(38rem, 100%);
+  max-width: min(35rem, 100%);
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
@@ -739,6 +741,7 @@ code {
 
   .hero {
     min-height: auto;
+    width: 100%;
   }
 
 }
