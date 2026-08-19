@@ -334,6 +334,7 @@ input {
 .section {
   width: min(100%, 92rem);
   margin: 0 auto;
+  scroll-margin-top: 6.5rem;
   animation: rise-in 640ms ease both;
 }
 
@@ -772,6 +773,20 @@ code {
 
   .wordmark {
     max-width: 12rem;
+  }
+
+  .site-nav nav {
+    flex-wrap: wrap;
+    overflow: visible;
+    row-gap: 0.15rem;
+  }
+
+  .site-nav nav a {
+    white-space: nowrap;
+  }
+
+  .section {
+    scroll-margin-top: 9rem;
   }
 
   .hero-actions .button {
