@@ -4,7 +4,7 @@ export const withBasePath = (path: string) => `${assetBase}${path.replace(/^\/+/
 export const siteConfig = {
   name: "George A. Nowacek II",
   shortName: "George A. Nowacek II",
-  domain: "https://ganowacek.github.io/george-nowacek.com",
+  domain: "https://ganowacek.github.io/personal_website",
   email: "geanowacek@gmail.com",
   linkedin: "https://www.linkedin.com/in/george-a-nowacek-ii/",
   github: "https://github.com/ganowacek",

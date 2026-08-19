@@ -4,8 +4,9 @@ Personal website for George A. Nowacek II, built as a fast static React site for
 
 Current status:
 
-- The repository is private while I review and revise the site.
-- GitHub Pages is currently disabled, so there is no public URL yet.
+- The repository is public.
+- GitHub Pages deploys from the manual GitHub Actions workflow.
+- The public site URL is `https://ganowacek.github.io/personal_website/`.
 - The site content should follow from `public/George_Nowacek_CV.pdf`.
 
 ## Local Development
@@ -25,7 +26,7 @@ npm run dev
 With the current GitHub Pages project-site base path, local preview opens at:
 
 ```text
-http://127.0.0.1:5173/george-nowacek.com/
+http://127.0.0.1:5173/personal_website/
 ```
 
 Build the production site:
@@ -84,7 +85,7 @@ The homepage uses a browser-native canvas scene inspired by Manim-style programm
 
 This repository includes a GitHub Actions workflow at `.github/workflows/pages.yml`.
 
-While the repository is private and the public site is paused, the workflow runs only when started manually from the Actions tab. When the site is ready to publish again, make the repository public if needed, re-enable GitHub Pages, and either run the workflow manually or add the `push` trigger back.
+The workflow runs only when started manually from the Actions tab. This keeps deployment intentional while still allowing the public site to be refreshed whenever the reviewed source is ready.
 
 When run, the workflow:
 
@@ -99,13 +100,12 @@ The workflow follows GitHub's custom workflow pattern for Pages deployment using
 
 ## Enabling GitHub Pages
 
-After pushing the repository to GitHub:
+GitHub Pages should be configured with:
 
-1. Open the repository on GitHub.
-2. Go to Settings -> Pages.
-3. Under Build and deployment, set Source to GitHub Actions.
-4. Push to `main` or run the workflow manually from the Actions tab.
+1. Source: GitHub Actions.
+2. Workflow: `.github/workflows/pages.yml`.
+3. Public URL: `https://ganowacek.github.io/personal_website/`.
 
 ## Notes
 
-The app uses a post-build step to create `404.html`, so direct navigation works on GitHub Pages. The Vite base is `/george-nowacek.com/`, which is required because this is deployed as a GitHub Pages project site rather than a custom-domain apex site.
+The app uses a post-build step to create `404.html`, so direct navigation works on GitHub Pages. The Vite base is `/personal_website/`, which is required because this is deployed as a GitHub Pages project site rather than a custom-domain apex site.
